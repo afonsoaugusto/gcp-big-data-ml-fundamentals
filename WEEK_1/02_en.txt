@@ -1,0 +1,47 @@
+Hi, I'm Lak. Welcome to the first module of our Big Data
+Fundamentals course. It provides an introduction
+to Google Cloud Platform. In this module, we'll examine the infrastructure behind
+Google Cloud Platform or GCP, which was originally
+built to power Google's own applications
+and is now available to you. Then we'll cover the big data and ML products that
+are built on top of that infrastructure
+and when you should choose which products for
+your solution architecture. After that, my favorite part
+of this course, learning from other customers who are using Google
+Cloud by exploring their use cases and
+getting inspired to solve similar challenges for
+your own teams and projects. You will learn where
+you can look up reference case studies of GCP customers by
+industry or by product, and then you'll examine their solution architecture
+in a short activity. Building the right
+team structure is critical to solving these
+big data challenges. We will explore
+the different types of roles and personas for building a successful
+big data team within your organization. Consider for a second, the impact that
+Google Search has on our daily lives with
+timely and relevant responses. Now think of other
+Google products: Gmail, Google Maps, Chrome,
+YouTube, Android, Play, Drive. Each of these products has
+over one billion monthly users. Google has had to develop
+the infrastructure to ingest, manage, and serve all the data
+from these applications, and to do so, with a growing user base and data requirements that
+are constantly evolving. Seven products with
+a billion users. Actually there's
+an eighth Google product that has a billion end-users, Google Cloud, except
+that it's your users. The end users served by Google Cloud customers
+such as Home Depot, Spotify, Twitter, New York Times, Colgate-Palmolive and Go Check. Let's look at
+the building blocks behind Google's big data
+infrastructure and how you can leverage
+it with Google Cloud. There are four
+fundamental aspects of Google's core infrastructure and a top layer of products and services that you will
+interact with most often. The base layer that covers all of Google's applications
+and therefore Google Cloud's too, is security. On top of that, are compute, storage,
+and networking. These allow you to
+process, store, and deliver business
+changing insights, data pipelines, and
+machine learning models. Finally, while running
+your big data applications on bare metal virtual
+machines as possible, Google has developed
+a top layer of big data and ML
+products to abstract away a lot of the hard work of managing and scaling
+that infrastructure for you.

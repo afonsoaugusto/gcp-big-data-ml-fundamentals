@@ -1,0 +1,63 @@
+So far, we've talked about
+low-level infrastructure, compute, storage,
+networking and security. However, as a data engineer or a data scientist
+or data analyst, you will typically work
+with higher level products. So let's talk about
+the big data and machine learning products that form Google Cloud Platform. We'll talk about the chronology
+of innovation not for history's sake, but so that you understand the evolution of
+data processing frameworks. Knowing how these frameworks
+have evolved can help you understand
+the typical problems that arise, and how they're addressed. One of the interesting
+things about Google is that historically, we have faced issues
+related to large data sets, fast changing data
+and varied data, what is commonly called big data earlier than the rest
+of the industry. Having to index
+a World Wide Web will do that, and so as the Internet grew, Google invented new
+data processing methods. In 2002, Google created GFS, or the Google File
+System to handle sharding and storing
+petabytes of data at scale. GFS is the foundation
+for cloud storage and also for what would become
+BigQuery managed storage. One of Google's next
+challenges was to figure out how to index the exploding volume
+of content on the web. To solve this in 2004, Google invented a new style of data processing known
+as MapReduce to manage large-scale
+data processing across large clusters
+of commodity servers. MapReduce programs are
+automatically parallelized and executed on a large cluster
+of these commodity machines. A year after Google published a white paper describing
+the MapReduce framework, Doug Cutting and Mike Cafarella
+created Apache Hadoop. Hadoop has moved far beyond its beginnings
+in web indexing, and is now used in many
+industries for a huge variety of tasks that all share
+the common theme of volume, velocity and variety of structured, and
+unstructured data. As Google's needs grew, we faced the problem of
+recording and retrieving millions of streaming user
+actions with high throughput, that became Cloud
+Bigtable which was an inspiration behind
+Hbase or MongoDB. One issue with MapReduce
+is that developers have to write code to manage all of the infrastructure
+of commodity servers. Developers couldn't just focus on their application logic. So between 2008 and 2010, Google started to move away from MapReduce to process and
+query large data sets, and instead they started
+moving towards new tools. Tools like Dremel. Dremel took a new approach
+to big data processing where Dremel breaks data into
+small chunks called shards, and compresses them into a columnar format across
+distributed storage. It then uses a query
+optimizer to farm out tasks between
+the many shards of data and the Google data centers
+full of commodity hardware to process a query in parallel
+and deliver the results. The big leap forward here
+was that the service, automanagers data imbalances, and communications
+between workers, and auto-scales to meet
+different query demands, and as you will soon see, Dremel became the query engine
+behind BigQuery. Google continued to innovate to solve its big data
+and ML challenges, and created Colossus as a next-generation
+distributed data store, Spanner as a planet scale
+relational database. Flume and Millwheel for data pipelines,
+Pub/Sub for messaging, TensorFlow for
+machine learning plus there are specialized TPU
+hardware we saw earlier, and Auto ML that's
+going to come later. The good news for you is that Google has opened up
+these innovations as products and services for you to leverage as part of
+the Google Cloud platform. You will practice working
+with these products in your labs as part of
+this fundamentals course.

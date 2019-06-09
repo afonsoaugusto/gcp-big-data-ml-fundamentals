@@ -1,0 +1,128 @@
+A growing data organization
+like yours will need lots of compute power
+to run big data jobs, especially as you
+design for the future, so that you can
+outpace the growth in new users and data
+for the next decade. Let's start with an
+example illustrating how Google uses
+its own compute power. Google Photos has recently been introducing smart features
+like this one, for automatic
+video stabilization, for when the camera is shaky, as you see here on the left. What data sources
+do you think are needed as inputs to the model? Well, you need the
+video data itself, which is essentially lots
+of individual images called frames ordered
+by timestamps. But we also need more contextual data than
+just the video itself, right? Absolutely. We need
+time series data on the camera's position and orientation from
+the on-board gyroscope and motion on the camera lens. So how much video data
+are we talking about for the Google Photos ML model to compute and
+stabilize these videos? If you consider the total
+number of floating-point values representing a single frame
+of high-res video, it's a product of the number of channel layers multiplied
+with the area of each layer, which with modern cameras can
+easily be in the millions. An eight megapixel camera creates images of eight million
+pixels each, approximately. Multiply that by
+three-channel layers and you get over 23 million data points
+per image frame. There are 30 frames
+per second of video. You can quickly see
+how a short video becomes over a billion data points to feed
+into the model. From 2018 estimates, roughly 1.2 billion photos and videos are uploaded to the Google
+Photos service everyday. That is 13 plus petabytes
+of photo data in total. For YouTube, which also has
+machine learning models for video stabilization
+and other models for automatically
+transcribing audio. You're looking at
+over 400 hours of video uploaded every minute. That's 60 petabytes every hour. But it's not just about the size
+of each video in pixels. The Google Photos team
+needed to develop, train, and serve a high-performing
+machine learning model on millions of videos to ensure that
+the model is accurate. That's the training dataset
+for this one feature. Just as your laptop
+hardware may not be powerful enough to process a big data job for
+your organization, a phone's hardware
+is not powerful enough to train sophisticated
+machine learning models. Google trains its production
+machine learning models on its vast network of
+data centers and then deploys smaller trained
+versions of these models to the hardware on your phone for predictions
+on your video. A common theme throughout this course is that when Google makes breakthroughs
+in AI research, it continues to
+invest in new ways to expose these as fully-
+trained models for everyone. You can, therefore, leverage Google's AI research with
+pre-trained AI building blocks. For example, if you're a company producing movie
+trailers and quickly want to detect labels and
+objects in thousands of these movie trailers to build a movie
+recommendation system, you could use a Cloud
+Video Intelligence API. You could use that API instead of building and training
+your own custom model. There are other fully
+trained models for language and for
+conversation too. You will learn and practice using these AI building blocks
+later in this course. But getting back to the Google Photos
+machine learning story. Running that many
+sophisticated ML models on large structured and
+unstructured datasets for Google's own products, required a massive investment
+in computing power. That's why Wired says, "This is what makes
+Google Google. Its physical network, its
+thousands of fiber miles, and those many thousands of
+servers that in aggregate, add up to the mother
+of all clouds." In essence, Google has been doing distributed computing
+for over 10 years for its own applications, and now, has made that compute power available to you
+through Google Cloud. But simply scaling
+the raw number of servers in Google's
+datacenters isn't enough. Here's an interesting
+rough calculation by Jeff Dean who leads
+Google's AI division. He realized years ago that
+if everybody wanted to use voice search on their phones and used it for
+only three minutes, we would need to double
+our computing power. Historically, compute
+problems like this could be addressed
+through Moore's Law. Moore's Law was a trend in
+computing hardware that describe the rate at which
+computing power doubled. For years, computing power
+was growing so rapidly that you could simply wait for it to catch up to
+the size of your problem. Although computing power
+was growing rapidly, even as recently as
+eight years ago, in the past few years, growth has slowed dramatically as manufacturers run up against
+fundamental physics limits. Compute performance
+has hit a plateau. One solution is to limit
+the power consumption of a chip, and you can do that by building Application-Specific
+Chips or ASICs. One kind of application
+is machine learning. Google's designed new types of hardware specifically
+for machine learning. The Tensor Processing
+Unit or TPU is an ASIC specifically
+optimized for ML. It has more memory and
+a faster processor for ML workloads than
+traditional CPUs or GPUs. Google has been
+working on the TPU for several years and has
+made it available to other businesses like yours
+through Google Cloud for really big and challenging
+machine learning problems. One such business that
+uses TPUs is eBay. They use cloud TPU pods to
+deliver faster inferences, inference are predictions, faster inferences to
+their users by a factor of 10. That's a 10X speedup. The decrease in
+model training time has also led to
+faster model experimentation. ML model training and
+future engineering is one of the most time-consuming parts of any machine learning project. eBay's VP of
+new product development remarked that
+the additional memory of the TPU pods enabled them to improve their turnaround time
+and iterate faster. One last example of compute power at Google and an inside look at our culture of thinking 10X is how our teams used machine learning to boost Google's own
+datacenter efficiency. The potential impact for
+machine learning was there, considering the number
+of datacenters that Google has to keep
+cooled and powered, and we were already
+collecting streaming sensor data for our existing
+monitoring platforms. Engineers and
+Alphabet's deep mind saw this as an opportunity
+to ingest that sensor data and train a
+machine learning model to optimize cooling better than
+existing systems could. The model they
+implemented reduced the cooling energy by 40 percent, and boosted the overall
+power effectiveness by 15 percent. I find this example
+particularly inspirational, because it's a machine
+learning model trained on machine learning specialized
+hardware in a datacenter, telling the datacenter
+how hard it can run the machine learning specialized that the
+model is training on. Powerful inception level stuff. Later in the course, you will see a demo
+on how you can set up a streaming data
+ingestion pipeline for your own IoT devices
+in less than an hour.

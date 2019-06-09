@@ -1,0 +1,157 @@
+So in this demo, I'm going to be
+showing you how to spin up a Compute
+Engine instance, run some software on it, copy files from that Compute Engine
+instance to cloud storage, and published those files
+to make them public. The use case that we're
+going to be doing, is to plot earthquake activity that happened in
+the previous week, and this data comes from USGS. So let me go ahead and
+go to cloud.google.com. So I'm starting on
+cloud.google.com, and I'll go to the Compute
+Engine part of it, go to VM instances
+and create a VM. So I'll click Create here. At this point, I'm creating
+a new virtual machine, let's call it "earthquake VM." You can call it whatever we want. We can choose where in
+the world we want it. I happen to be closer
+to Oregon now, so I'll go ahead and do
+US West and I'll pick a zone, I can pick US-West-B. Let me go ahead and
+say that I want to use two virtual CPUs. I can, as you can see, we can at this point
+in time go up to about 64 CPUs with
+about 250 gigs of RAM. Another thing that I can do, is I can click Customize
+and say that I want 18 CPUs and 50 gigs of RAM. Go find me a machine that
+matches these requirements. But in our case what we'll do, is we'll just go
+back and we'll pick a pretty small machine like
+one vCPU is probably enough, and then 10 gigs of space is enough but of
+course we can change that and we can use
+a different operating system with the different size
+of disk if we wanted. We want to be able to use
+gsutil G Cloud etcetera. So I will allow full access
+to all my cloud APIs, so that I can write to
+Cloud Storage from the VM. I don't want to directly access the VM through
+HTTP or HTTPS. So now we will just
+access it through SSH. So I'll go ahead and create
+the virtual machine, and at this point the virtual
+machine is getting created. Let's wait a few seconds
+and once the VM is up, we should be able to SSH into it. So there it is. Here's my VM, and at
+this point this is a bare-bones virtual machine
+that I'm SSH into. This virtual machine, so it
+doesn't have anything on it. In fact, it doesn't have even very basic
+software like Git. So if I were to type Git here, it says "Git is not found". So I need to install Git. Good thing is, we can do
+that. I have root access. So what I can do is, I can
+do sudo which gives me root access apt-get install git. It says. "Do you
+want to continue?" Yes, I do. This now installs Git, which is a way to access my source code repository which contains everything
+else that I need. So I will go ahead and do git clone
+https://www.github.com/GoogleCloudPlatform. So this now gets the
+data from GitHub, gets all of the data that I
+need including the files. Now if I do LS, I
+have my repository. In this case, this is part of
+the files for this course, and so we can go into
+bdml fundamentals, and there is an earthquake VM. I'll go into the earthquake VM and look at what
+files are present. Turns out that I have
+an HTML file already. I have some shell script
+to ingest data. I can do less ingest.sh and this basically goes ahead and removes an existing
+earthquakes.csv, and does a wget which is
+a way to download data over HTTP from
+earthquake.usgs.gov, and saves that as
+earthquakes.csv. So that's what ingest
+dataset does. Then, I also have transform.py and
+transform.py basically, is some Python code that uses
+Matplotlib to go ahead and parse the earthquake data from USGS and put it on an Earth map, creates a PNG out of it. So this particular file
+can be run to go ahead and process a weekly data
+from the USGS. It goes ahead and gets
+one week of data from USGS and creates earthquakes.png. In order to do that though, I need to have some software installed and the software
+that I need, it's all listed in
+the install missing.sh. So I need to basically get a bunch of different
+Python libraries. So let me go ahead and
+first run install missing.sh. This goes ahead and downloads and installs all of the Python
+packages that I need. As you can see, working
+with a virtual machine on the Cloud is like working with any other Unix machine
+in this case, because I created a DBN machine, I got a Unix machine and that's a Unix machine
+that I'm working with. At this point, it has all the Python packages that I want. We can go ahead
+and say ingest.sh, and it will go ahead and
+download earthquakes.csv. You can see that there's an earthquakes.csv now,
+that's been created. If we were to do head, head shows the first
+few lines of the file. It turns out that currently there has been an earthquake
+in California, and there has been another earthquake
+in Alaska and so on. So let's go ahead, and so there's 93 kilometers east north-east of Cape Yakataga, Alaska, at the time that
+I'm recording this demo. So there's a bunch
+of earthquakes. We've gotten the data, but looking at a CSV file
+is not very interesting. Let's go ahead and create
+an image out of it. In order to do that, I will run transform.py. So transform.py, is essentially getting the earthquake data,
+converting an image, and notice that this point
+there is no image but now if I do ls star dot PNG, I now have an earthquakes.png. So let's go ahead and now
+put it onto the cloud. We want to get rid of
+this virtual machine. The whole idea is compute
+and storage are separate. So we've done the compute, we have some files, let's copy them off the machine into cloud storage so that
+we can delete the machine. So let's go and create
+a Cloud storage bucket. The way to do that, is again go down here. Last time we did Compute Engine, this time we're
+going to do Storage. So we'll go to storage browser and say that we want
+to create a bucket. So let's go ahead, I've already created this bucket, let me just delete that,
+I don't need that bucket. Let's say that I want
+to create a bucket, and I have to give my
+a bucket a unique name. So let's say that I want to give the bucket
+the name "Earthquake". But the bucket name
+is already in use. A bucket name has to
+be globally unique. So I can say "earthquake2019"
+and I have it. So there is nobody else who's created a bucket of this name. If you can't come up
+with a unique name, try using a project name. This project name is
+also a globally unique, and in many cases that
+might work as well. An easy way to do that, is we could go down to the home menu and there
+is a project name, I can copy the project name, go back to the storage
+thing and say, "Can I create a bucket
+of that name?" Yeah, I can. So that also works. So I can create something with this particular name
+as my bucket. Let's make it multi-regional, so we can access it from
+anywhere in the world, and it's going to cost us about $0.03 per gigabyte per month. We can now choose how
+to set the permissions. Normally, you want to set permissions but one
+object-by-object. But let's go ahead and
+specify it object-by-objects, so we can go ahead and
+create the bucket. So now we've created
+a bucket with this name, and I'll copy that into my thing, and that bucket is now created, we can now come back to this virtual machine
+and we can say gsutil ls and the name
+of the bucket, and it doesn't have
+anything in it right now. So it should be empty. So it
+doesn't have anything in it. What we can now do, is it that we have gsutil copy earthquakes.star to the bucket. So at this point, it
+has copied three files, it's copied the CSV file, the HTM file, and the PNG file. Indeed, when we come
+down here and we say "Refresh," we should have
+the three files. So hooray. So we have the three files all three files currently
+are not public, so no one can access them except us because
+we own these files. But from this point onwards I don't need
+the virtual machine, so let me just go down to the compute engine and say, "Hey, that virtual VM instances"
+select my virtual machine, and I can do one of two things. I can stop the virtual machine, in which case it's
+like pausing the VM. I'll be paying for the disk but I won't be paying
+for the storage at all. The other thing that I can do
+instead of stopping the VM, is that I can delete the VM. So I can go ahead
+and delete the VM, I don't need it ever again. So stopping is actually
+very convenient way, we've installed
+a bunch of software, we don't want to get rid
+of the VM but we don't want to pay for
+the compute of the VM. So what we could do is,
+we could just stop it. So the VM is no longer
+running and we can just say, "Stop," and now the VM is paused. At this point, once
+that VM is paused, we'll only get charged
+for that 10 gigs of disk that we had
+attached to the VM. So relatively inexpensive way
+to have a virtual machine sitting around that has know all of the software everything
+that we have installed on it. If we ever need to
+run things again, we can come back, restart
+the VM, and run things. But let's go back, and go back to our storage. You will see that the
+data here is private, and what we want to do, is that we want to make it public, we want to make it
+accessible from anybody. What we could do, is we could
+go down to the storage. Now, we are in the bucket, and we can say that we want
+to take these three files, go to Permissions, and we can say that we want to go to the permissions and we
+want to add members. We can add members
+called allUsers, and give those users, everybody, storage object viewer. So they will be able to view
+that particular object. So now we have our allUsers, and allUsers has Storage Object
+Viewer on these objects. So now if you go now, we see that these three
+things are public and Cloud helpfully warns us that these three
+things are public, they all have public links
+associated with them. So we can actually go down here, and say, "What is a public link?" Click on the link, and that is storage API is that
+GoogleAPIs.com. So anybody who comes to
+this particular link will be able to basically see
+the earthquakes this week. So at this point, I'm recording on April 4th, so the week started
+on March 28th. So I have seven days
+of data and these are the earthquakes that
+we saw in Alaska, and those are the earthquakes
+that we saw in California, and you can kind of see
+the Ring of Fire where all of these earthquakes
+that are happening around the coast of the Pacific. But the bottom line,
+what did we do? We spun up a virtual machine, we carried out processing on it, and then we took those files, we copied them to Cloud storage. We were able to stop the VM, VM is no longer running but the files are
+still available, and we're able to serve them out.

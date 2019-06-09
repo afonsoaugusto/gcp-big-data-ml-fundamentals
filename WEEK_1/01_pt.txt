@@ -1,0 +1,70 @@
+﻿
+Oi, eu sou Lak e eu lidero uma equipe que ajuda
+clientes do Google Cloud com sucesso
+aplicativos que usam nossos dados grandes e
+produtos de aprendizado de máquina. Entre as coisas
+o que fazemos é criar big data e aprendizado de máquina
+cursos de treinamento e laboratórios; como este curso, Big Data e Fundamentos de aprendizado de máquina
+com o Google Cloud Platform. Este curso foi
+projetado para mostrar dados do mundo real e
+Desafios ML e dar-lhe prático
+experiência prática na resolução desses desafios
+usando o Google Cloud. É um curso crítico para
+mestre porque abrange os casos de uso mais comuns que você e sua equipe encontrarão
+na sua jornada de big data. Este curso é dividido
+em seis módulos de conteúdo. No primeiro módulo, que é baseado em dados
+tomada de decisão, você vai aprender tudo sobre os dados e ferramentas ML
+disponível no GCP de um alto nível
+perspectiva organizacional. Então, nos próximos quatro módulos, você será apresentado a
+Os produtos do Google Cloud no contexto, como eles são empregados para resolver
+problemas do mundo real. Nos quatro módulos, além de ampliar seu conhecimento sobre
+nossos produtos e plataforma, você também vai praticar
+com Qwiklabs hands-on. Finalmente, no módulo de resumo, faremos uma recapitulação de tudo que você aprendeu
+neste curso e fornecer-lhe
+recursos adicionais nos tópicos que você fez. Em cada módulo, isso é
+a ordem típica que seguiremos. Primeiro, teremos palestras
+de especialistas no assunto, onde apresentaremos
+o cenário big data e os desafios associados e como resolvê-los com
+Tecnologias de nuvem. Em seguida, você verá uma demonstração da solução e
+ação que irá destacar as principais características que você vai aprender e
+prática em seus laboratórios. Depois de entender
+os cenários e assisti as demos, é hora de você
+praticar com Qwiklabs em um verdadeiro Google
+Conta do Cloud Platform. Finalmente, você irá explorar casos reais de uso do cliente
+e arquiteturas, para que você possa se familiarizar
+-se com as melhores práticas e se inspirar
+em suas próprias soluções. Em outras palavras, descrevemos uma classe comum de grandes
+dados e problemas de ML e aperfeiçoar um problema específico e, em seguida, mostramos-lhe uma demonstração de uma solução
+para esse problema. Então falamos sobre porque nós
+construiu uma solução dessa maneira, usando essa oportunidade
+para cobrir como e quando usar os vários produtos
+usado na solução. Finalmente, alargamos
+a lente e mostrar-lhe aplicações do mundo real que são variantes dos princípios
+coberto no capítulo. Você já está tomando
+este curso, o que significa que você reconhece a importância
+de processamento de big data. Mas por que essa habilidade
+definido em tão alta demanda? De acordo com a pesquisa da McKinsey, até 2020, teremos 50 bilhões de dispositivos conectados
+na Internet das Coisas. Esses dispositivos
+fazer com que o fornecimento de dados duplique a cada dois anos. Infelizmente, porém, apenas
+cerca de um por cento dos dados gerados hoje é realmente analisado de acordo com a McKinsey. Este estado de coisas oferece uma oportunidade aberta porque há muito
+de valor em dados. Acredito que a capacidade de criar aplicativos que manipulem grandes quantidades de dados e derivem insights desses dados
+de forma automatizada. Essa habilidade é uma habilidade que será bem recompensada
+no mercado. Indivíduos que possuem essa habilidade terão muitos
+oportunidades abertas a eles e as empresas que desenvolvem essa habilidade
+tornar-se mais bem sucedido. Então a oportunidade para
+analistas de dados, cientistas de dados e engenheiros de dados
+vamos falar sobre o que são esses papéis e o que
+as diferenças são. A oportunidade para todos esses três papéis é muito clara. Em seu núcleo, este curso é voltado principalmente
+para engenheiros de dados. Dito isto, se você é um analista, um engenheiro de ML, ou
+um líder de tecnologia para sua equipe, é uma habilidade valiosa saber como todos os big data
+e os produtos ML interagem para resolver alguns dos desafios mais comuns
+que os engenheiros de dados enfrentam. Quais são esses desafios? Esses desafios estão migrando seu grande
+cargas de trabalho de dados para um ambiente em que você possa analisar com eficácia
+todos os seus dados, analisando interativamente grandes e grandes quero dizer terabytes
+para petabytes; analisando grandes conjuntos de dados
+de dados históricos. Em terceiro lugar, construindo
+pipelines escalonáveis que podem manipular dados de streaming, para que sua empresa possa tomar decisões baseadas em dados
+mais rapidamente. Finalmente, construindo
+modelos de aprendizado de máquina para que você não é
+apenas reagindo aos dados, você é capaz de fazer previsões
+ações voltadas para o futuro usando seus dados.

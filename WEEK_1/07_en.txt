@@ -1,0 +1,39 @@
+The last piece of core
+infrastructure underpinning your data pipelines and machine learning models
+is Google great security. When you build an application on your on-premises
+infrastructure, you are responsible for
+the entire stack's security, from the physical security of the hardware and the premises in which they're housed through the encryption of
+the data on disk, the integrity of your network, and all the way up to securing the content stored in
+those applications. But when you move
+an application to GCP, Google handles many of the
+lower layers of security like, the physical security of
+the hardware and its premises, the encryption of data on disk, and the integrity of
+the physical network. Because of its scale, Google can deliver a higher level of security at these layers, than most customers could
+afford to on their own. The upper layers of
+the security stack, including the securing of data,
+remain your responsibility. But even here Google
+provides tools like Cloud IAM to help you implement the policies that you
+define at these layers. Communications over
+the internet to our public cloud services
+are encrypted in transit. Google's network
+and infrastructure have multiple layers of protection to defend
+our customers against denial of
+service attacks. Stored data is
+automatically encrypted at rest and distributed for
+availability and reliability. This helps guard against unauthorized access and
+service interruptions. One specific product
+I'll highlight here, that you will see a lot of
+in this course is BigQuery. Google Cloud's petabyte scale
+analytics data warehouse. Data in a BigQuery table is encrypted using
+a data encryption key. Then, those data
+encryption keys are themselves encrypted with
+key encryption keys. This is known as
+envelope encryption and it provides
+additional security. BigQuery also allows you to provide your own
+encryption keys. These are called Customer
+Managed Encryption Keys. Inside BigQuery, you can monitor your team's BigQuery usage
+and running queries, and proactively limit access to data at a row
+and a column level. We cover BigQuery as a service
+in greater detail later. But in this section, we just wanted to point out BigQuery's security controls
+as an example of the security controls
+that you will find in every service on GCP.

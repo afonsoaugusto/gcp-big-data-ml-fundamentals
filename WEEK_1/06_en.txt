@@ -1,0 +1,40 @@
+So far, we've looked at compute and we've
+looked at storage. The third part of Google Cloud infrastructure
+is networking. Google's high-quality
+private network, petabit bisectional bandwidth, and Edge points-of-presence
+are combined using state- of-the-art software- defined networking to
+deliver a powerful solution. First, the private network. Google has laid
+thousands of miles of fiber optic cable that crosses oceans with repeaters
+to amplify optical signals, and as you can see in this
+amusing GIF, it's shark-proof. Google's data centers
+around the world are interconnected by
+this private Google network, which by some publicly
+available estimates, carries as much as 40 percent of the world's internet
+traffic everyday. This is the largest
+network of its kind on Earth and it
+continues to grow. Second, the petabit
+bisectional bandwidth. One of the teams
+we will discuss in this course is a separation
+of compute and storage. You no longer need to do everything on a single machine or even a single cluster of machines with their
+own dedicated storage. Why? Well, if you have
+a fast-enough network, you can perform computations
+on data located elsewhere like
+many distributed servers. Google's Jupiter Network can
+deliver enough bandwidth to allow 100,000 machines to
+communicate amongst each other. So for any machine to communicate with
+any other machine in the data center at
+over 10 gigabits per second. This full duplex bandwidth means that locality within
+the cluster is not important. If every machine can talk to every other machine at 10 Gbps, racks don't matter for data analytics and
+machine learning. But you need to ingest data probably from around the world. You need to serve out the results of your analytics
+and predictions, perhaps to users who are
+all around the world. This is where Edge points
+of presence come in. The network, Google's Network, interconnects with
+the public Internet at more than 90 internet exchanges and more than 100 points
+of presence worldwide. When an Internet user sends
+traffic to a Google resource, Google responds to
+the user's request from an Edge network
+location that will provide the lowest
+delay or latency. Google's Edge caching
+network places content close to end-users
+to minimize latency. Your applications in GCP, like your machine learning models, can take advantage of
+this Edge network too.

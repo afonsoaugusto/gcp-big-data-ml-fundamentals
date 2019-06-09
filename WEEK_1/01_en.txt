@@ -1,0 +1,69 @@
+Hi, I'm Lak and I lead a team that helps
+customers of Google Cloud successfully build
+applications that use our big data and
+machine learning products. Among the things
+we do is to create big data and machine learning
+training courses and labs; like this course, Big Data and Machine Learning Fundamentals
+with Google Cloud Platform. This course was
+designed to showcase real-world data and
+ML challenges and give you practical
+hands-on expertise in solving those challenges
+using Google Cloud. It's a critical course to
+master because it covers the most common use cases you and your team will encounter
+on your big data journey. This course is divided
+into six content modules. In the first module, which is on data-driven
+decision-making, you will learn all about the data and ML tools
+available on GCP from a high-level
+organizational perspective. Then in the next four modules, you will be introduced to
+Google Cloud products in context as they are employed to solve
+real-world problems. In the four modules, in addition to expanding your knowledge about
+our products and platform, you will also get to practice
+with hands-on Qwiklabs. Finally, in the summary module, we'll do a recap of everything you've learned
+in this course and provide you with
+additional resources on the topics that you've done. In each module, this is
+the typical order we'll follow. First, we'll have lectures
+from subject matter experts, where we'll introduce
+the big data scenario and the associated challenges and how to address them with
+Cloud technologies. Next, you'll see a demo of the solution and
+action which will highlight key features that you will learn and
+practice in your labs. After you understand
+the scenarios and have watched the demos, it's time for you
+to practice with Qwiklabs in a real Google
+Cloud Platform account. Finally, you will explore real customer use cases
+and architectures, so you can familiarize
+yourself with best practices and get inspired
+in your own solutions. In other words, we describe a common class of big
+data and ML problems and hone in on one specific problem and then we show you a demo of a solution
+to that problem. Then we talk about why we
+built a solution that way, using that opportunity
+to cover how and when to use the various products
+used in the solution. Finally, we widen
+the lens and show you real-world applications that are variants of the principles
+covered in the chapter. You're already taking
+this course which means you recognize the importance
+of big data processing. But why is this skill
+set in such high demand? According to McKinsey research, by 2020, we'll have 50 billion devices connected
+in the Internet of Things. These devices will
+cause the supply of data to double every two years. Unfortunately though, only
+about one percent of the data generated today is actually analyzed according to McKinsey. This state of affairs provides a wide open opportunity because there's a lot
+of value in data. I believe that the ability to build applications that handle large amounts of data and derive insights from that data
+in an automated manner. This ability is a skill that will be well rewarded
+in the marketplace. Individuals who have this skill will have many
+opportunities open to them and companies that develop this skill will
+become more successful. So the opportunity for
+data analysts, data scientists, and data engineers
+we'll talk about what these roles are and what
+the differences are. The opportunity for all three of these roles is very clear. At its core, this course is primarily geared
+towards data engineers. That said, if you're an analyst, an ML engineer, or
+a tech lead for your team, it's a valuable skill to know how all the big data
+and ML products interact to solve some of the most common challenges
+that data engineers face. What are those challenges? Those challenges are migrating your existing big
+data workloads to an environment where you can effectively analyze
+all of your data, interactively analyzing large and by large I mean terabytes
+to petabytes; analyzing large datasets
+of historical data. Third, building
+scalable pipelines that can handle streaming data, so that your business can make data-driven decisions
+more quickly. Finally, building
+machine learning models so that you're not
+just reacting to data, you're able to make predictive
+forward-looking actions using your data.
