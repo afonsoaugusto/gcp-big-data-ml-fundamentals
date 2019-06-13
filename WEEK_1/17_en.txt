@@ -1,0 +1,129 @@
+So we decided to use a big data platform
+like Hadoop and then RDBMS like MySQL to solve the housing
+recommendations problem. These are both
+open source technologies. You probably have
+Hadoop clusters and MySQL database
+running on-premises. So let's assume that your team already has this
+recommendation system working on-prem and see how to migrate it from on-premises to
+Google Cloud Platform. Of course you want to do that only if the migration
+can add value. So we will look at that as well. For a housing
+recommendation model, let's say our data science team
+already has a working on-premise model using SparkML job on
+your Hadoop cluster. They're interested in the scale
+and flexibility of GCP, and they want to do a like-
+for-like migration of their existing SparkML
+jobs from on-premises, and they want to do this
+as a pilot project. As explained in
+the previous lesson, we can get away with computing predicted ratings once a day. We don't need to compute
+recommendations in real time. So Hadoop batch
+processing is enough. Here, we'll use SparkML, but instead of doing
+it on-premises, we'll run the machine-learning
+job on Cloud Dataproc and store the ratings in
+an RDBMS in Cloud SQL, because this is
+a relatively small dataset of five recommendations
+for every user. So this is what you will
+practice in your first lab. Incidentally, this is why the smart reply in
+Gmail is so amazing. Unlike our housing recommendations, Spark replies'
+recommendations have to be done in real time, when a new e-mail pops
+up in your mailbox. Needless to say Gmail is doing something far more sophisticated than what we're
+talking about here. Here's how we decided
+on using Cloud SQL among the other big data products available for
+storing our ratings. This is a good reference to follow based on your
+storage access pattern. We'll cover the solutions in your other scenarios
+in this course, but briefly, use Cloud Storage
+as a global file system. Use Cloud SQL as an RDBMS as a relational database
+management system for transactional
+relational data that you access through SQL. Use Datastore as a transactional No-SQL
+object-oriented database. Use Bigtable for high-throughput
+No-SQL append-only data. So not transactions,
+append-only data. So a typical use
+case for Bigtable is sensor data for
+connected devices for example. Use BigQuery as
+a SQL data warehouse to power all your
+analytics needs. So here we wanted a
+transactional database and we expect to have data volumes in
+the gigabytes or less, and so hence Cloud SQL. If you're a more visual learner, here is another good map of visualizing where to
+store your data in GCP. If your data is unstructured, like images or audio,
+use Cloud Storage. If your data is structured
+and you need transactions, use Cloud SQL or Cloud
+Datastore, depending on whether you want your access pattern
+to be SQL or No-SQL, and by No-SQL we mean
+a key-value pair. In other words,
+you'll be trying to search for data based
+on a single key, use Datastore if you'd be finding data using SQL use Cloud SQL. Cloud SQL generally plateaus
+out at a few gigabytes. So if you wanted
+transactional database that is horizontally scalable so that
+you can deal with data larger than a few gigabytes, or if you need
+multiple databases so you want them spread
+globally use Cloud Spanner. So another way to say it as if one database is
+enough use Cloud SQL. If you'll need
+multiple databases, either because you have
+a lot of data or because your application needs
+to be transactional across different continents,
+use Cloud Spanner. If your data is structured
+and you want Analytics, consider either Bigtable
+or BigQuery. Use Bigtable if you need real-time
+high-throughput applications. Use BigQuery if you want Analytics over
+petabyte-scale datasets. For our housing
+recommendation use case, we want to store our ratings
+and predictions somewhere. This is a structured dataset
+of user ratings and houses. It's built for a transactional
+workload, writes and reads, and one database is enough for a small dataset and
+hence we pick Cloud SQL. So what's Cloud SQL? It's a Google-hosted and managed relational
+database in the Cloud. Cloud SQL supports
+two open-source databases: MySQL and Postgres, and
+other database solutions. In our case, we'll
+be using MySQL. One of the advantages of Cloud
+SQL is that it's familiar. Cloud SQL supports
+most MySQL statements and functions even stored
+procedures, triggers and views. It brings the benefits of Cloud economics in the form
+of flexible pricing. You can pay for what you use.
+What do we mean by that? GCP manages the MySQL
+Instance for you. This means things like
+backup and replication, it's on the Cloud so you can
+connect to it from anywhere. You can assign it
+a static IP address, and you can use typical
+SQL connector libraries. Because it's behind the
+Google firewall it's fast. You can place your Cloud SQL
+Instance in the same region as your App Engine or
+Compute Engine applications and get great bandwidth. Also, you get Google Security. Cloud SQL resides in
+secure Google datacenters. So that covers where we'll be storing
+the recommendations. But how will we compute these recommendations
+in the first place? Where would we be
+doing the compute? Let's review where
+big data computations have been done historically
+and even today. Before 2006, big data
+meant big databases. Database design came
+from a time when storage was relatively cheap and
+processing was expensive. So it made sense to
+copy the data from its storage location to the processor to perform
+data processing, and then the result would
+be copied back to storage. Around 2006,
+distributed processing of big data became
+practical with Hadoop. The idea behind Hadoop is
+to create a cluster of computers and leveraged
+distributed processing, HDFS. The Hadoop Distributed
+File System, stored the data on
+machines in the cluster, and MapReduce provided distributed
+processing of this data. A whole ecosystem of Hadoop-
+related software grew up around Hadoop, including
+Hive, Pig and Spark. Around 2010, BigQuery
+was released which was the first of many big data services
+developed by Google. Around 2015, Google
+launched Cloud Dataproc which provides a managed service for creating Hadoop
+and Spark clusters, and managing data
+processing workloads. The other piece of our system is a software that runs on Hadoop. The software in
+this case is to train a machine learning model for creating
+housing recommendations. In this case we used SparkML which is
+part of ApacheSpark. ApacheSpark is an open source software
+project that provides a high-performance
+analytics engine for processing batch
+and streaming data. Spark can be up to 100
+times faster than equivalent Hadoop jobs because it leverages
+in-memory processing. Spark also provides
+a couple of abstractions for dealing with data including
+what are called RDDs, or Resilient Distributed
+Datasets and DataFrames. We'll be using our Spark job for the housing rental
+recommendations. We'll be using our Spark job for the housing rental
+recommendations, but we'll be doing the
+computation on Cloud Dataproc.

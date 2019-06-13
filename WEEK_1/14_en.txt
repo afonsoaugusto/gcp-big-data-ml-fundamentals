@@ -1,0 +1,76 @@
+Hi, I'm Lak. Welcome to the third module of our Big Data and Machine
+Learning Fundamentals course. This module is on performing product recommendations using
+Cloud SQL and Apache Spark. We'll cover product
+recommendations, which is probably the most common
+machine learning problem employed by businesses. Along the way, we'll
+also get to look at two Google Cloud
+products; Cloud SQL, which is a managed
+relational database, and Cloud Dataproc, which is a managed environment on which
+you can run Apache Spark. Managed, what's
+managed? Stick around. We'll start out talking about
+recommendation systems. What they are, what business
+applications they power, and consider a typical scenario. In this case, that is
+product recommendations using machine learning for
+recommending rental houses. Let's say that
+our data science team is familiar with
+Hadoop and Spark, and they've already built
+a recommendation system. Our mission, which we
+have chosen to accept, is to migrate this existing recommendation
+system that our team has built from on-premises
+cluster to the Cloud. We look at how you would
+go about migrating on-premises applications
+to Google Cloud platform. In particular, why
+you would want to migrate an on-premise application to Google Cloud platform. Maybe it is to avoid
+the challenges that are associated with utilizing and
+tuning on-premise clusters. But also, when you move an on-premise application
+to Google Cloud, you're also moving from dedicated storage to
+off-cluster storage with Google Cloud Storage, and we'll talk about why that is. Let's start with where you find recommendation systems
+adding value to businesses. Where have you seen
+recommendation systems before? One common place
+that comes to mind is e-commerce product
+recommendations. A model learns what you
+like and don't like, what you buy and don't buy, and then starts to suggest similar products that you may not have discovered
+by yourself. You can then help
+inform the model explicitly by
+starring, up voting, or down voting your own
+personal rating of an item, or maybe by adding the item
+to the shopping cart. Notice how I said explicitly. A model can learn from your
+preferences implicitly, too. Can you think of
+a few data points that an e-commerce model could learn without you
+explicitly rating items? Perhaps, time spent on the website of
+particular products, maybe items that you
+have last viewed, maybe where you navigate it from, what device you're on, and if you've allowed it, geographic
+personalization as well, things that people who live in your neighborhood or
+your country tend to buy. You have probably seen
+recommendation engines in Netflix, Amazon, and so on. It's also what Facebook uses to put posts on your newsfeed, and what Google uses to
+personalize your search results. Product recommendations are the first machine
+learning application the public recognizes. As in, "How does Netflix know that I
+would like this movie?" The general population
+is pretty unaware of machine learning applications
+like medical diagnoses, or airline fares or detecting illegal
+logging or playing chess until it got to product recommendations
+where if you like x, you will also like y, and that tuned the public in to the idea of
+machine learning. One cool example of a recommendation system
+is Smart Reply in Gmail. This is a machine
+learning model that recommends three possible
+answers to your emails. Another is how Google Photos
+recommends similar photos or groups of similar photos
+so that you can add them into an album and you can
+order a printed version of it. Another example is
+how Google Maps now serves personalized
+restaurant recommendations. When you explore a new area, the app provides users
+with a "For you" tab, which lists restaurants and venues that it thinks you will enjoy based
+on your history. For example, here
+you can see that Good Barbecue is
+a 95 percent match for me, as well as a recommendation for a new bistro that is trending. A core aspect of a recommendation system
+is that you need to train and serve it at scale. Think of the machine
+learning system that drives YouTube
+recommendations for users. It identifies things that
+a user may like based on what they've watched in the past and serves them these
+video recommendations, like these video
+recommendations that I got when I logged into YouTube. Most of the recommendations
+here are about programming Tensor Flow
+or machine learning, which I guess says a lot
+about the videos that I like. These recommendations are
+relevant and useful to me. In the following lessons, you'll implement
+your own recommendation system for housing rentals.

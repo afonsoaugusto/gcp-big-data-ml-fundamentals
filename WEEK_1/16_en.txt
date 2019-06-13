@@ -1,0 +1,99 @@
+So how would housing
+recommendations work in our system? First, we need to
+ingest the ratings of all the houses that have
+already been done by our users when we showed
+them specific houses. So we have to go
+to an inventory of rentals and ingest the
+ratings for the houses. These ratings could come from explicit ratings. Maybe we showed the user the house in
+the past and they've clicked four stars after
+seeing the house details, or the ratings have come
+from implicit ratings. Maybe they've spent
+a lot of time looking at the website corresponding
+to this property. Then, we'll train a machine
+learning model to predict a user's rating of every house that we currently have in
+our listing database. We will then pick the top five rated houses that
+they haven't already seen. People who are not aware of recommendation engines
+somehow think of a car appearing on their Facebook feed because they happened to read
+an automobile review article. They say, "Oh, I was reading
+this review article and then just kept seeing cars
+in my Facebook feed." That's not the case. Reading the article caused
+the rating of all cars to go up and the ratings of other items that are not cars to stay relatively the same. This caused the
+highest ranking car to get into the top five. So there was always
+a rating for the car. The car was always there
+but its rating was simply lower before they read
+the article in question. So how would we predict
+a user's rating of a house, particularly, if they
+haven't seen it before. The model is based on two things. It's based on your other ratings, what have you rated other houses, and other people's rating
+of this particular house. A particularly simple model could be to look at all
+the users who rated this particular house and find the three users in their list
+who are most like you, maybe, they live in your country, maybe they have the same age, maybe they went to
+the same college, find the three users on
+that list who are most like you. Then, the prediction is the average of those three
+users ratings. This is not a great
+model of course. It's too easy to game. Think about what
+happens if three people gang up together
+and rate a house, a house that nobody
+else cares about. So there are only three
+ratings for this house. So the three closest users are going to be
+these three people. So for sparse houses, it's really, really, really easy to game. But this idea of using user ratings of
+a particular house and users like you helps convey the basic premise of how
+recommendation models work. So where is the machine
+learning here? Where's the learning? The model would
+have to figure out how to find the users
+who are most like you. How many users to consider. Three users, five users, seven users, how many? And how to weight
+the different factors such as the overall popularity of the items you have
+in common and so on. This can be done by
+seeing what parameters help predict if you intentionally
+withheld ratings best. So we may have thousands of items and only 2-3
+reviews per item. The chances are
+those reviewers have nothing in common with the user that we
+want a rating for. So because this rating matrix
+is extremely sparse, we need to cluster items
+and users together. To put this in
+a more intuitive way, imagine that all of
+your friends drive SUVs, Sport Utility Vehicles, and you read
+an article on Porsche. The car that appears on
+your feed might be a Porsche SUV even if the article
+was on Porsche cars and all your friends
+drive Toyota SUVs. The machine learning model
+is imputing a rating for a Porsche SUV that is quite high even though none of
+your friends rated it. So the machine learning
+model is essentially asking "Who is this user like?" Secondly, is this subjectively a house that people tend to rate highly? The predicted rating is a combination of
+both these factors. All things considered,
+the rating of a house for a particular user
+will be the average of the ratings of users like this user but it's calibrated with the quality
+of the item itself. Now that we understand
+the problem and approach, we need to address
+the last question, the infrastructure question. How often and where will you compute
+the predicted ratings, and once you have them, once you've computed
+these ratings, where would you store them? What do you think? How often and where will you compute
+the predicted ratings? It's not as if rental
+recommendations have to be updated every time some users
+somewhere rates a house. We don't need to update the rental recommendations every time a new rating
+appears in our system. It's probably sufficient if we update the recommended
+houses for users once a day, maybe even once a week. In other words, this does not need to be streaming.
+It could be batch. On the other hand, we will probably
+have thousands of houses and millions of users. So it's probably best that we compute the rating that every
+user will give every house, we do that computation
+in a scalable way. We don't want to do it
+on a single machine, we want to do it in a fault tolerant way that
+can scale to large datasets. So a typical solution for computation that
+has to happen over large datasets in
+a fault tolerant way is to do it in a big data platform
+like Apache Hadoop. Finally, where will you
+store the computed ratings? Why would you want to store them? Well, we probably want to
+power a web application with these recommendations
+and we don't want to compute recommendations when
+the user reads a webpage. We want to precompute
+these recommendations, as we said, it's a batch job. So once a day, once a
+week, we pre-compute it. Then, when the user logs on, we want to show that user the recommendations that we precomputed
+specifically for them. So we need a transactional way
+to store the predictions. Why transactional? So that while the user is
+reading these predictions, we can update the
+predictions table as well. Assuming that there
+are five predictions for every user and we
+have a million users, that's a table of
+just 5 million rows. It's small enough and
+compact enough that a typical solution
+for this would be to store the data in a relational database
+management system, an RDBMS like my SQL.

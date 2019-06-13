@@ -1,0 +1,71 @@
+Now that you've seen how
+recommendation systems are used at Google and
+in other businesses, it's time to look into
+the specific scenario that we'll use in the next lab. The core pieces of a
+recommendation system are: data, the model, and infrastructure to train and serve
+recommendations to users. Our data set for this scenario
+will be housing rentals that we want to recommend to our users based on
+their preferences. We'll use a machine
+learning model to make these recommendations. A core tenet of machine learning is to let the model learn for itself what the relationship is
+between the data that you have like user preferences
+and housing features, and the data that you don't have, like a user's rating on a property that
+they haven't yet seen. What would this user rate this property if we
+showed it to them? You will not be
+writing custom logic. Logic like, if the house is a beach house and the season is summer and the user
+likes cozy houses, then house number 22
+is what we recommend. Can you think of
+the issues if we used such logic instead of letting
+the model figure it out? What if there were many
+different kinds of beach houses, with all kinds of different features like
+the number of bedrooms, locations, amenities,
+you get the picture. What if you have
+different kinds of users. Some users would like to
+go to beach houses in summer and others would
+like the shoulder season. Hard-coding logic for
+all these features and different kinds of
+user segments isn't scalable, and it assumes that we always know the right answer
+for every scenario. Let's illustrate this point
+with an example. Take Google Search. Say you go to Google and
+search for "giants." What should we show you as the results to make it
+most relevant for you? If you're in California, should we show results for the San Francisco baseball team and the local games nearby? What about if you're
+based in New York? Should we tailor
+the results to show the New York Giants
+football team instead, and should we write
+this as a rule? Well, up until a few years ago, this is exactly how
+Google search worked. There were tons of rules that were part of the search
+engine code base to decide which sports team to show a user when
+they search for "giants." The query is "giants" and
+the user is in the Bay Area, show them results about
+San Francisco Giants. If the user's in New York area, show them results
+about New York Giants. If they're anywhere else, show them results
+about tall people. Just imagine how many, if-then or case
+statements this would be, and how hard it would
+be to maintain, and this is just for one query. Multiply this by
+the large variety of queries that people make, where they make them from, what device they're on, and what kinds of interests
+different people have, and you can imagine how complex
+a code base would become. The code base starts to
+get unwieldy because hand-coded rules are
+really hard to maintain. So this is where machine
+learning comes into play. Machine learning scales much better because it doesn't
+require hard-coded rules. It's all automated. Learning from data
+in an automated way, that's what machine learning is. Our data set in this case
+is that we know historically when people searched for "giants" and we showed
+them a bunch of links, which of those links
+did people click on? Since we know this,
+we have a data set of a query term and the links
+that people liked. Why can't we train
+a machine learning model to basically provide
+a ranking of these links? That's exactly what
+Google itself did internally with a deep learning
+model called Rank Brain. After rolling it out, the quality of
+our search ranking results improved dramatically, with the signal from Rank Brain
+becoming one of the top three for influencing how different link
+results are ranked. If you're interested, I'll provide a link where you
+can read more about it. We'll revisit machine learning in greater depth in each of
+the modules in this course. But for now, just remember
+that machine learning is this idea that we want to teach the computer using
+examples, not with rules. Any business application
+where you have those long switch
+or case statements or if-then logic manually coded, and you have a history
+of good labeled data, that is data for which you know a good answer or a bad answer, a history of good labeled data, any such application is a possible application
+for machine learning.

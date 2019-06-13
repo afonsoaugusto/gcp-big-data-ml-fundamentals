@@ -1,0 +1,43 @@
+Now, it's time to explore some cool Big Data and
+Machine Learning solutions that have been built
+using Google Cloud. Then, you will get
+a chance to find a use case and explore
+it in your own activity. Keller Williams is
+a US real estate company. Keller Williams uses
+AutoML Vision to automatically recognize
+specific features of houses, like this house has
+a built-in bookcase. This helps agents
+get houses listed faster and buyers find houses
+that meet their needs. Neil Dholakia, Chief Product Officer of Keller
+Williams says that by training a custom machine
+learning model to recognize common elements of furnishings and architecture, customers can
+automatically search home listing photos
+for specific features, like granite countertops or even more general styles like, "Show me modern houses." This application of
+machine learning allows Keller Williams'
+realtors to quickly walk around a home
+and record a video, and use the object
+detection capabilities of AutoML Vision to find and tag key aspects of the home that customers
+might want to search on. A big benefit for their
+organization is that they already had many existing images and videos of home
+walk-throughs already. They simply fed them into the pre-built AutoML Vision
+model and customized it, all without writing
+a line of code. You will learn more about
+AutoML Vision and practice creating machine learning models with it later in this course. Ocado, the UK online only
+grocery supermarket used machine learning to
+automatically route emails to the department that needed to
+actually handle them. This avoids multiple rounds of reading and
+triaging those emails. With their old process, all the mails went to a central mailbox where
+the email was read, and then routed to the person or department that
+could handle it. Unfortunately, the
+central mailbox with somebody reading all the emails,
+that doesn't scale. So it led to long delays
+and poor user experience. So Ocado used machine learning, specifically the ability
+to read an email, to process natural language, to discover customer sentiment, and what the message
+was about so that they could route it immediately
+and automatically. One last use case. Kewpie manufactures baby food. In this case, quality is not necessarily
+a matter of safety, because the food itself is safe. But if baby food is discolored, it tends to get parents
+very concerned. So Kewpie turned to
+Google and our partner BrainPad to build a solution that leverages
+image recognition to detect low-quality or
+discolored potato cubes. The machine learning algorithm enabled them to free people up from the tiring work of inspection and focused on
+other more important work.

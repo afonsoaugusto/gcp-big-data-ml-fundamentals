@@ -1,0 +1,91 @@
+So far, you've seen
+the infrastructure, the software, and the customers who are already using GCP. But the most critical factor to the success of your future
+big data and ML projects, is your team itself. The people and the core
+skill sets required, will make or break
+your next innovation. A common mistake that
+companies make is that they go out and hire 10 PhD
+machine learning scientists, and expect magic to happen. I see this a lot with
+companies who are new to building data
+science and ML teams. They focus on the ML researchers, and forget about all the help and guidance that
+the ML researchers will need. The reality as my colleague Cassie has noted in a blog post, looks more like this. You need data engineers to build the pipelines and
+get you clean data. Decision makers, to decide
+how deep you want to invest in a data-driven opportunity while weighing the benefits
+for the organization. Analysts, to explore
+the data for insights and potential relationships
+that could be useful as features in a
+machine learning model. Statisticians, to help make your data-inspired decisions become true
+data-driven decisions, with their added rigor. Applied machine
+learning engineers, who have real-world
+experience building production machine
+learning models from the latest and best information and
+research by the researchers. Data scientists, who have
+the mastery over analysis, statistics, and machine learning. Analytics managers
+to lead the team. Social scientists and
+ethicists to ensure that the quantitative impact
+is there for your project and, it's
+the right thing to do. As I've written in a blog post on this subject,
+it's linked below, a single person might have
+a combination of these roles, but this depends on the size
+of your organization. Your team size is one of the biggest drivers
+in whether you should hire for
+a specific skill set, up-skill from within,
+or combine the two. Do you remember these
+big data challenges? Can you see how different
+roles would map to this? Within Google Cloud
+training, my team and I have thought about the
+different types of data science teams and roles
+that are using Google Cloud, so that we can best tailor our data in ML courses and labs. One of the core
+challenges we face, is how different types of users engage with our GCP
+big data and AI products. We'll be using a few personas
+in this course. Their backgrounds,
+goals, and challenges, might be similar to yours. Let's meet them now, and you'll see them again later. Brittany and Theo lead their data engineering
+team in managing their Hadoop cluster for the organization's data
+pipelines and compute jobs. Their organization was
+an early adopter of Hadoop for distributed
+computing back in 2007, and they've built up
+Hadoop jobs over time. Brittany and Theo's job
+is to actively ensure that the Hadoop jobs are all run and that the cluster
+is well maintained. They say, "Our CTO has challenged our data
+engineering team to find ways we can spend less on managing
+our on-prem cluster. Right now, we just want to
+show her options that don't require any code changes
+to our 100+ Hadoop jobs." Brittany and Theo
+are data engineers who manage a company's
+data platform, and are focused on reducing
+maintenance burden. Jacob is a data analyst who has a background
+in building and querying his company's MySQL transactional and
+reporting database. As the company grows, the reporting tables in his RDBMS are already
+starting to slow down. Users are reporting long query and dashboard loading times. He wants to find
+an easy path for scaling his company's data reporting and not have to manage
+another data system, as the data needs to grow. Jacob is a data analyst who wants to be able
+to derive insights from data and disseminate them with as little
+friction as possible. Rebecca is a data engineer, whose company specializes
+in harnessing data from the Internet of
+Things or IoT devices. She says, "I really want to design our data pipelines
+for the future. For us, that means lots
+and lots of streaming data from our IoT devices
+with low latency." Her team lead has asked her to come up
+with a plan to handle the expected 10X growth in streaming
+data volumes this year. She wants to future proof
+her team's pipelines, but doesn't want to spend
+hours manually scaling hardware up and down as
+streaming volume changes. Additionally, her
+business stakeholder team wants insights from all the IoT devices in the field on their dashboards,
+with minimal delay. Vishal says, "I pitched my team on the value
+machine learning can add, and I've got buy-in
+to build a prototype. But now I've got to
+build a prototype. What are some of
+the easiest ways I can see whether machine learning
+is feasible for my data?" Vishal is an applied
+machine learning engineer, who has a background in building machine learning models
+in TensorFlow and Keras. His team is growing rapidly, and he's often asked
+by his leadership, to assess the feasibility of machine learning for
+a wide variety of projects. He doesn't have the time
+to train and test all of the ideas
+with custom models. He wants to empower his data analysts and
+data engineering teams, by teaching them
+machine learning. Do these personas sound familiar to your role
+and your team? Next, we'll learn more about
+the Google Cloud Platform, big data and machine learning
+approaches and solutions, so that we can address
+each of these challenges.

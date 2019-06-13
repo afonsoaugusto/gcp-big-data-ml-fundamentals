@@ -1,0 +1,79 @@
+Now, it's your turn. One of the best ways
+to inspire and drive your team and
+projects to the cloud, is to show your stakeholders
+examples from your industry, examples where
+someone has already succeeded with
+building a solution. For this activity, navigate to cloud.google.com/customers
+and scroll down. For Products and Solutions, filter on big data analytics and also on machine learning. Select a customer use case
+that interests you, then answer
+these three questions. Number one, what were the barriers or challenges
+the customer faced? The challenges are important, you want to understand
+what they were. Second, how were these challenges solved with a cloud solution? What products did they use? Three, what was
+the business impact? Take a moment to complete the activity and then
+return to the video. For our example we chose GO-JEK, because they use a data
+engineering solution that maps nicely to the topics that we're going to cover
+as part of this course. GO-JEK is an
+Indonesia-based company that gives shared
+motorcycle rides, brings goods, and provides a wide variety of
+other services for over two million families
+across 50 cities in Indonesia. Their App has
+over 77 million downloads, and they're connected with over a 150,000 merchants who sell through their delivery platform. If you're interested in GIS data, they have over one
+million drivers delivering goods and giving rides across 50 cities and GO-JEK gets censored data
+from all of these drivers. So GO-JEK manages
+more than five terabytes per day of data for analysis. The Chief Technology
+Officer, the CTO, Ajey Gore, gives
+this meaningful statistic. For example, we ping everyone of our drivers
+every 10 seconds. Which means,
+six million pings per minute and eight
+billion pings per day, that's Gore who's saying this. If you look at the scale and number of our customer
+interactions as well, we generate about four terabytes to five terabytes
+of data every day. We need to leverage this data
+to tell our drivers where demand from customers is
+strongest and how to get there. With the success of their on-demand
+motorcycle ride service, GO-JEK faced the challenges when looking to scale their
+existing big data platform. What challenges?
+Their management team stated, "Most of the reports are
+produced one day later so we couldn't identify the problems that were happening
+as soon as possible." GO-JEK chose
+Google Cloud Platform and migrated the data
+pipelines to GCP, so that they could
+get high performance with minimal day-to-day
+maintenance. Their data engineering team uses Cloud Dataflow for streaming data processing and
+Google Big Query for real-time business insights. Their end to architecture
+looks like this. First, they ingest data from their mobile App online and IoT devices on vehicles like the GPS tracking
+for deliveries. They ingest this data
+into Cloud PubSub. Then, the data is brought
+into Cloud Dataflow for processing and a variety of other data sources are used
+to enrich this event data. Finally, after Dataflow
+has done the processing, Dataflow streams that
+data into BigQuery and BigQuery in this case is used as a data warehouse
+to store the data. What's the business impact? So here's an example of one of the problems that
+the GO-JEK team solved. The question was, how
+could they quickly know which locations had too many
+drivers or too few drivers? Too few drivers to meet
+the demand for that area. To solve this problem, what does the team need to do? Number one, they needed to check the demand of bookings by customer against the supply of drivers and do
+this thing in real-time. Then, the team needed to
+identify who these drivers are and notify them to reroute
+to higher demand areas. How they achieved this, was by building a streaming
+event data pipeline using Cloud Dataflow. Driver locations would
+ping out to Pub/Sub every 30 seconds and these locations would go into
+Dataflow for processing. The data for pipeline aggregates
+the supply pings from the drivers against
+the requests for bookings, and then connects to GO-JEK's notification system
+to alert drivers. From a technology standpoint, the system needs to handle an arbitrarily high throughput of messages and scale up
+and down to process. Cloud Dataflow automatically
+manages a number of workers, processing the pipeline
+to meet demand. The GO-JEK team is then
+able to visualize and highlight supply-demand
+mismatch areas for management reporting, as you see in this example here. The green dots, the
+small green dots, represent riders and
+new booking requests, and the red dots, the small red dots, those are the drivers, so you have riders in the green dots and the drivers
+in the small red dots. Then you see the areas
+that the system has identified as a highest mismatch
+of supply and demand, those areas are
+highlighted in red like the train station which
+has many booking requests, but not enough drivers. The team can now actively
+monitor and ensure that they're sending drivers to
+the areas in highest demand, which means faster
+booking times for riders and more fairs
+for the drivers.

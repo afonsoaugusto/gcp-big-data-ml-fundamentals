@@ -1,0 +1,67 @@
+Choosing which big data and
+machine learning products are the right mix for your solution is a critical
+skill that you have to learn. Later on in this module, you will get the opportunity to examine the architecture that real Google Cloud customers use so that they can
+serve as inspiration. Let's review the options
+available to you for compute and storage
+services so that you can better interpret
+those use cases later. The service that
+might be the most familiar to newcomers is Compute Engine which lets you run virtual machines on
+demand in the Cloud. It's Google Cloud's
+Infrastructure as a Service or IaaS solution. It provides maximum
+flexibility for people who prefer to manage
+server instances themselves. GKE, Google Kubernetes
+Engine is different. Where Compute Engine is about individual machines
+running native code, GKE is about clusters of
+machines running containers. Containers have code packaged up with all its dependencies. So GKE enables you to run containerized applications
+in a Cloud environment that Google manages for you under your
+administrative control. Containerization is a way to package code that's designed to be highly portable and to use
+resources very efficiently. Since most use cases involve multiple programs that need to execute and communicate
+with each other, you need a way to orchestrate the containers running
+these separate programs. That's what Kubernetes does. Kubernetes is a way to orchestrate code that's
+running in containers. All the Kubernetes in GKE are outside the scope
+of this course, are linked to our cloud
+architecture specializations in the course resources. App Engine is GCP's fully managed Platform as a Service
+or PaaS framework. That means it's
+a way to run code in the Cloud without having to
+worry about infrastructure. You just focus on
+your code and let Google deal with all the provisioning
+and resource management. You can learn a lot more
+about App Engine in the specialization
+Developing Applications in Google Cloud Platform. Cloud Functions is a completely serverless
+execution environment or Functions as a Service, FaaS. It executes your code
+in response to events whether those events occur once a day or
+many times a second. Google's scales resources
+as required but you only pay for the service
+while your code runs. What's the difference between App Engine and Cloud Functions? Typically, App Engine is used for long-lived Web applications that can autoscale to millions, to billions of users. Cloud Functions are used for
+code that's triggered by an event such as a new file
+hitting Cloud storage. The fastest way to lift and shift your data workloads is by provisioning a VM and
+running your code. You will experiment
+with this later on when you run Spark ML jobs on Cloud Dataproc which spins up Compute Engine
+instances for your cluster. Most applications need a
+database of some kind. If you've built
+a cloud application, you can install and
+run your own database for it on a virtual machine
+in Compute Engine. You simply start up
+the virtual machine, install your database engine, and set it up just
+like in a datacenter. Alternatively, you can use Google's fully-managed
+database and storage services. What all these - Bigtable, Cloud Storage,
+Cloud SQL, Spanner, Datastore - what all these have in
+common is that they reduce the work it takes to store
+different kinds of data. GCP offers relational and
+non-relational databases and worldwide object storage. You will learn more about
+these later on in this course. GCP also offers fully- managed big data and
+machine learning services. Just as with storage
+and database services, you could build and implement
+these services yourself. But why manage the
+infrastructure for compute and storage where it can be fully
+managed by Google Cloud? Here's a complete list of big data and
+ML products organized by where you would
+likely find them in a typical data
+processing workload. On the left, you will see the foundation to where
+your raw data is stored. If your data isn't
+stored on GCP yet, you can ingest it using
+the tools that you see next. After your data is on GCP, you can analyze it using
+the tools in the third column and run machine learning on it with the tools in
+the fourth column. The last column is
+how you can serve out your data and ML insights
+out to your users.
