@@ -1,0 +1,96 @@
+One of the most common
+use cases is running your Apache Spark jobs
+on your Hadoop cluster. Now, let's do a demo of
+creating a new cluster and running a Spark job
+using Cloud Dataproc, and our goal will be to do
+it in 10 minutes or less. Which if you've ever seen an on-premises Hadoop
+cluster by yourself, that seems like
+a pretty big win for infrastructure setup time
+and efficiency. Let's get started. All right. Here we are in the Google
+Cloud Platform console. This is Cloud Dataproc. How you get here is if you
+open up the navigation menu, I've got several favorites
+that I've pinned here. But I'll show you
+how to actually, if you scroll down in the Products and
+Services to big data, you see a lot of the products
+that we mentioned so far. Dataproc is right here. If you click that pin, that'll bring it all the
+way up here which saves it, which is a nice little
+efficiency hack. Hovering over the Cloud
+Dataproc service, you'll see that you
+can click on Clusters, Jobs, or Workflows. But if you just
+click on the logo, that'll take you to
+the Clusters page. So here we have it. It is blank, blank slate. So the first thing we
+want to do is create and provision an Apache Hadoop
+cluster on Dataproc. So the configuration details, as you might expect are here. We'll give the cluster
+a great name. We'll be estimating the digits of Pi in a distributed fashion, so we'll just call it Pi cluster. Here you can choose what type of availability
+which is essentially the ratio of
+how many master nodes do you want your n worker nodes, so we'll keep it standard. If you want to adjust
+the hardware which is your compute, your CPUs, you can do that here all the
+way down to at the time of recording having 160 virtual
+CPUs and ultra memory. We're going to keep just standard here and 15 gigabytes of memory, 500 gigabytes persistent disk sure, these are all the settings. So if you're running
+a pilot project for an apples to
+apples comparison, just map your same infrastructure using food for your clusters, and the number of nodes
+we're going to maintain it, just the two is there, and we'll go ahead
+and click create. While that cluster is spinning
+up behind the scenes, we'll go ahead and just fill
+out a job to start with. So I already ran a job previously and you
+can tell that since I didn't have a cluster
+before that I actually turned
+down that cluster. So we're going to be
+creating a brand new job. So click on Submit Job
+and keep the job ID, or we'll just call this
+estimate Pi digits. Region global is fine. It's good that we have the cluster name even
+though it's spinning up and it still has
+it here you can submit a job and queue it to run, job types not a Hadoop job
+is a Spark job. You can see the
+different job types that you can select here, and now we define the Java class. This is SparkPi - I'll
+linked the example, but you can actually
+see there's a bunch of other Spark examples that you can run, and it essentially, just it generates a ton of pairs of xy coordinates on
+a unit circle or a circle with a diameter
+of one inside of a square, which is the Monte
+Carlo method for estimating the number
+of digits in Pi. If you're interested,
+I'll link that there, but it's essentially we're
+running that and using the Hadoop worker
+nodes to process that in massive parallel and the actual example
+where the jar file is, I'll just paste that in
+there from the example, and we are going to generate a thousand
+of those xy pairs. That's just an argument
+that we're passing through. This is specific to the job
+that we're running. Don't always put a thousand for the arguments unless
+your program requires it, and we'll go ahead and submit it. Now, it's going to run, let's see if that cluster
+is ready for use. Yes, we have the
+green checkmark here. If we wanted to, you can actually click into the cluster and get a lot of really good monitoring of metrics that you see here. From within there, you can see the jobs that are running. In this case for
+the last 30 seconds, we've had this estimate
+Pi digits job. Let's go ahead and monitor
+that job specifically. Naturally, you can
+have multiple jobs running on a cluster, multiple clusters running
+multiple jobs, and boom, we get the output of our job. We see that it started here, and if we scroll down far enough, it should give us a log output,
+boom. Here we go. Where we've actually submitted
+the application, and we get the result which is the Pi
+estimation right here, and then the job is complete. Spark has been stopped. So now, what you can do is we've got a successful job execution, took 36 seconds plus
+the time to spin up the cluster is the real power is, you can go ahead and turn
+down that cluster now. Now, if you wanted to have a long live cluster because you had persistent data on
+them, sure absolutely. We'll be talking a
+little bit about later about the separation
+of compute and storage to try to get out of using persistent disks on clusters and using something like
+Google Cloud Storage. But if we don't need
+this cluster anymore, we're not trying to
+persist any data, we've already ran
+our calculation. It's just as simple as clicking the delete icon and
+bring that cluster down, don't worry about managing
+the infrastructure. You've got what you needed
+from that particular job, or if your job is done
+you wanted to submit more jobs or rerun
+the same job here. Use however many clusters, whatever size of clusters, edit the resources on the fly. The big takeaway is that
+clusters are now what we call fungible resources,
+they are ephemeral. You use them when you need
+them to submit your jobs, if you need them longer or
+if you need them shorter, if you need more clusters
+or fewer clusters, you can manage
+that infrastructure automatically here
+through Cloud Dataproc. That's in essence what it is. So my challenge to you is
+inside of your lab a little bit later when you're building the recommendation engine using Cloud SQL and Cloud Dataproc, experiment within Cloud Dataproc, take a look at the logs for each of your different
+running jobs, and if you're running on-premise
+workloads within Hadoop, see if you can experiment
+with some running some of those job within Cloud Dataproc and see which one
+is more efficient.

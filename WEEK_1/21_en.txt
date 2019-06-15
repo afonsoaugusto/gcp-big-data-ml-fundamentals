@@ -1,0 +1,22 @@
+It's now time for your lab. You are in charge of migrating your
+company's existing machine learning workload for housing recommendations from
+your on-premises Hadoop cluster to the Cloud. Your organization is happy with
+the current model, but the underlying infrastructure on-premise is causing them
+headaches to tune and utilize efficiently. Your CTO wants as little friction
+as possible from your existing Hadoop on-premise infrastructure,
+but has heard of the advantages that Cloud solutions offer for
+autoscaling and serverless management. So here are your lab objectives. Create a Cloud SQL instance and
+populate the tables. Explore the rentals data using
+SQL statements using Cloud Shell. Launch Dataproc. Train and apply a machine learning model written in
+PySpark to create product recommendations. Explore the inserted rows in Cloud SQL. Here's what the setup will look like. In step one, we set up
+Google Cloud Storage and Cloud SQL. And then import the records
+from GCS into Cloud SQL. And now that your ratings
+are in Cloud SQL, in step two, you will run a machine
+learning training job in Cloud Dataproc to read those ratings
+and train the machine learning model. In step three, you will run the model in
+Cloud Dataproc to create recommendations. And save the top five recommendations for
+each user back into Cloud SQL. Lastly, step four, your ratings can be delivered
+back to users through App Engine. You won't do steps one and four in this lab because those steps
+deal mostly with web programming. In this lab, you concentrate
+on doing steps two and three. Try out the lab, and keep in mind that you
+have multiple attempts for each lab and you can always come back and practice more.

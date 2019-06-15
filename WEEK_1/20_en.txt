@@ -1,0 +1,64 @@
+As you might remember
+from the demo earlier, separating compute and
+storage enables cost-effective scale
+for workloads. With the notion of
+turning down clusters, you may be worried about
+all the data that's currently stored on disk HDFS. You may be using
+HDFS on-premises. What happens to that with our new Google Cloud
+Platform architecture? Your data is not
+stored in the cluster, your data is now stored off-cluster in Google
+Cloud Storage buckets. Really, won't that make things slow to reach out
+across a network, each time the cluster
+needs some data? Recall that earlier we mentioned Google's data center bandwidth
+between compute and storage. We talked about a
+petabit bisectional bandwidth. What that means is that, if you draw a line somewhere in the network the bisectional
+bandwidth is the rate of communication at which
+servers on one side of the line can communicate with servers
+on the other side. With enough
+bisectional bandwidth, any server can communicate with any other server at
+full network speeds. With petabit
+bisectional bandwidth, the communication is so
+fast that it no longer makes sense to transfer the
+files and store them locally. Instead, it makes sense to use the data from
+where it is stored. So here's the plan.
+We'll use HDFS, but we'll use HDFS only on the cluster for working storage, storage
+during processing, but we will store all actual input and output
+data on Google Cloud storage. Because the input and output
+data is off the cluster, the cluster can be created
+for a single job or type of workload and can be
+shut down when not in use. Changing your code
+that works on prem to have it work with the data
+on cloud storage is easy. Just replace HDFS in your Spark
+or Big Cloud with GS. So you take the HDFS URLs, HDFS :// and replace it with GS :// This will make the Spark of big job read or write to
+cloud storage, that's it. There's also an H-Base connector
+for Cloud Bigtable. So if you have your data in Bigtable you can use
+the HBase connector. There's a Big Query connector that you can use
+to work with data, if the data is in
+the analytics warehouse. So when we say
+off-cluster storage, we're talking about
+cloud storage or we are talking about BigQuery or we are
+talking about Bigtable. Cloud Data-proc and
+Google cloud storage are tightly coupled with
+other GCP products. So storing your data off cluster, means that you can process
+this data not just with Spark from Data-proc but also from
+all these other products. Not to mention, storing
+it off cluster in GCS is generally
+cheaper, since: a, disks attached to
+computer instances are expensive in and of
+themselves and b, if your data are off cluster, you'd get to shutdown
+the computer nodes when you're not using them. So bottom line, store your
+data in Google Cloud Storage. Friends don't let
+friends use HDFS. So let's recap what
+we've covered. You can get a cloud
+data-proc cluster up and running in
+about 90 seconds. This gives you all of
+the power of Hadoop without having to
+manage clusters. As you saw, you
+can lift-and-shift your existing Hadoop
+and Spark workloads, by simply replacing HDFS://
+URLs with GS:// URLs. You can connect Cloud Data-proc to Google Cloud Storage and unlock the benefits of
+both scale and cloud economics. You get to provision a cluster
+per job if you want to, and shut the cluster
+down when you're done. Lastly, your clusters
+are customizable, which could include autoscaling
+and preemptible VMs so that you get cost savings.
