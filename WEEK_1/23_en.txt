@@ -1,0 +1,182 @@
+Let's see if we can
+execute a large query at scale using BigQuery. In this example, we already
+have an existing and large BigQuery public dataset for all GitHub repository
+code that's public, but we'll highlight how
+you can upload or ingest your own data using
+the web UI as well. Naturally, you could
+do this entire demo entirely in the command line, or the BigQuery API. But I've got a few surprises
+that I can show you about the new web UI
+for BigQuery, that you might not
+have seen before. So here it is, it's
+our challenge. That's Query over 2.5 billion lines of programming
+code from GitHub, do it inside BigQuery, and it'll settle
+the age old challenge of whether or not
+it's more popular for programmers and developers to use tabs or spaces when coding. We'll do that by
+parsing and processing every single line in
+over 11 million files, and then group the end report by programming language like C, Java, Python, or Go, and then interpret the insights. Let's give it a shot.
+So here we are back in the Google
+Cloud Platform Console. To navigate to BigQuery, this is the web UI. I have it pinned since
+I commonly use it. But if you scroll down
+the Products list, you'll be able to find
+it under Big Data, and you click on
+BigQuery and it'll take you to the web console. While you can be practicing
+a lot more with a product in the dedicated module on BigQuery, I want to
+show you a quick, lightning fast demo of processing
+a lot of data at scale, so you can get inspired to use BigQuery for your own cases. So inside of the console, the majority of
+the window is taken up by the Code Editor, which is where you're
+going to writing or, in our particular case, pasting an existing script for we're going to
+be running lots of analysis on datasets. Now, if your dataset
+doesn't exist, you can create a dataset, and once that dataset is
+there as an empty bucket, where you can create
+tables from within there. You can upload data from
+Google Cloud Storage. You can upload it from a file, or link it from drive, or just create
+an empty table that you can stream into your results later. That's one of the things that
+we're going to be doing in our Interactive things demo
+a little bit later on. In this particular case,
+the dataset already exists, and that's going to be
+the GitHub files dataset. If you wanted to take a look
+at it after this demo, you can go to Explore
+public datasets. You type in, GitHub. There's lots of public datasets
+that are available, and you can see it's
+actually GitHub Activity Data,
+which is many, many millions of files that are hosted publicly on
+GitHub that had been ingested into this public
+dataset for exactly demos and analysis like
+you see in this demo. So we have an example script that we're going to be running. The only reason why
+I made it rather long here as I broken up each individual part
+of the code up, for our end purpose of looking to see whether or not tabs or
+spaces is more popular. One of the neat tricks that
+you can do inside the web UI, if you have a table, in this particular case, you have the projects, the BigQuery project
+dot the dataset, dot this specific table. So it's just collections, of
+collections, of collections. You can actually hold
+down the Command or the Windows key, click on that Table Name, and that'll take you
+to really useful information about
+the table like the schema, what columns are present, how large the table
+is, and the details. In this particular case,
+we've taken a subset which is about 13 million rows here over the total
+GitHub data set, and which is 133 or so
+gigabytes to process. A really useful next step
+is if you want to preview some of that data
+without running any SQL, you can just click
+on the Preview, and you can see we have
+individual code files. If I'll just make this
+a little bit bigger, you can see the actual code inside of the cell under
+the content field here. You can see things
+like the file path, which we can use to extract the language that the
+code is written in; lots of good raw data. A really good language to process that raw data and analyze it at scale is SQL or
+Structured Query Language, and that's what you see we
+have written in a script here. So as you might imagine, working through all of this code, we first need to break
+out the problem at hand. So we know that our code is
+in there in one large cell, so we break up individual lines
+using the Split function, and essentially it turns that one massive code block
+into a smaller array. So I'll show you what
+that actually looks like. You can run
+just small subsections of code inside of BigQuery
+by highlighting it, and then clicking down
+in the Run arrow, and then Run selected. So you can see, now, instead of a monolithic block of code, each individual line has now been broken up into
+that same row of code. The really wild point
+that you're going to see much little bit later
+in the BigQuery module, where it's dedicated
+to topics like this, is it's still
+technically one row, even though these are broken
+out in different lines. The magic there is that
+BigQuery natively supports arrays as datatypes,
+which is cool. So this is just one row within array of
+programming lines, however long the program is, stored inside of a new field
+that we created called Line. So that's essentially what
+the Split function does. It split the content, the blob of the code by
+new line into individual lines. Now, to actually access, and you can imagine
+what we want to do is look at the first
+starting character to see if it's a tab or a space to help settle our challenge. We unpack that array using the UNNEST function
+that you see there, and you'll learn more about. Then we parse out that
+first character just using a string
+function which says, "Hey, for that flattened line, I want to look at
+the very first position, the very first character for every single one of
+those lines of code, and then do a comparison." I've broken up the comparison
+into this next SQL chunk, which is just using REGEXP to contain whether or
+not it's a tab, which is that special
+character there, or if it's the empty space
+in that first position. Once you've done that, everything from here on out
+is just aggregating and comparing based on those results to see whether or not tabs
+are more popular, spaces are more popular. You get the idea.
+But it showcases you some nice SQL
+aggregation functions, if you're not familiar. These things like counting
+the total number of lines, summing the total number
+of tab instances, or instances of spaces, comparing the two with
+this if operator here, pretty basic SQL stuff. Then we're extracting
+out the file path. Remember you saw that.JS at
+the end of that file name, we're just extracting
+out that here. Then we do a quick filter
+on an aggregation, to make sure that we're
+excluding the long tail of GitHub code commits and code files that don't
+ultimately have more than either 10 tabs
+or 10 spaces. That helps us kind
+of trim down to only those real significant programs that have
+been committed. Then we just do
+the slight ratio of the sums and a little bit of formatting, and
+we're good to go. So let me comment back out
+my little exploration. We'll run this whole thing and process all those millions
+of lines of code. What's wild is, since I ran this demo a little bit
+earlier today, we get the result back
+immediately because BigQuery behind the scenes can
+cache queries that says, "Hey, I've already
+returned this result." What you can do, and
+just so I can show you how fast this query will
+run when it's not caching, because it's a little bit
+like cheating for the purposes of
+showing the speed, is we'll actually
+just run it and say, "Hey BigQuery, don't use
+the cached results." Normally, unless you're trying to show the speed of BigQuery, use the cache because if someone already ran the query against it on
+your particular project, they can run it again and just get the advantage of
+that cached query. So you see, it took
+us about 13 seconds, and we process 133 gigabytes of data from that public dataset. So let's expand
+the rows here and do a little bit of insight diving. So you can see
+the most popular language by the total number of files, not by the total number of lines, with total number of
+lines, it looks like it's the C. But total number of files, there's more Java files than
+there are in anything else. We're ordering it by
+the number of files. If you want to
+change that for your report, go right ahead. You can do that within
+the ORDER By in SQL or link it in like a Tableau Looker or Data Studio Dashboard. But the real insight is
+the ratio of tabs to spaces. So just looking
+quickly down here, you can see spaces are dominated
+except in the case of C, which is where tabs
+have slightly more, 600,000 versus the
+500,000 for spaces. Even more interesting insight, that you couldn't
+really get doing this analysis any other way, especially not manually, is
+the programming language Go actually has the inverse. It's one of the only
+ones where it has strong tab preference
+versus space. Now I'm not a Go expert, but when I did
+a quick Google search, it's because their compiler, how it actually emits the code. It puts those spaces in for you. It's not like when you're
+programming in Go, you're doing the tabs consciously
+instead of the spaces. So that's BigQuery processing
+it in a 133 gigabytes, 13 seconds with
+no infrastructure. So you don't need to worry
+about a lot of the knobs; or spinning up clusters to
+support data workloads; or if multiple queries are
+running at the same time, is that going to affect
+your performance? There's a lot that's
+happening that you don't see. If you're really,
+really interested, the last thing I'll show you
+is a really telling stat. So if you click in
+the Execution details, and this new web UI that's
+in beta for BigQuery, you'll see a really
+interesting stat that I quiz a lot of people on. What do you think "Slot
+time consumed" means? You know it took 13 seconds
+to run this query. What is this 49 minutes? If you actually hover over
+the question mark it says, "It's a unit of
+computational capacity." So in essence, what
+BigQuery is telling you, "Hey, across all of our workers, we did essentially 50 minutes of work massively in parallel, 50 minutes so that your query could be returned
+back in 13 seconds. Best of all for you,
+you don't need to worry about spinning
+up those workers, moving data in-between them, making sure they're sharing all their results between
+their aggregations. All you care about
+is writing the SQL, finding the insights,
+and then running that query in a very
+fast turnaround. But there is abstracted from you a lot of distributed
+parallel processing that's happening." So that is the super high
+level BigQuery demo. Later on in the course,
+you'll see how you can actually write SQL just like this for
+doing Machine Learning, and exploring
+those public datasets, and building your
+Machine Learning Model in one of your next labs.
+We'll see you there.

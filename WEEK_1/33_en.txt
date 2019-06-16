@@ -1,0 +1,38 @@
+Let's walk through the key phases of your ML project in BigQuery. What you'll find is that writing the code to create
+the actual model, is going to be
+the really easy part. Getting all the right data into a model is
+always the hard part. The entire process is
+going to look like this. First, we need to bring
+our data into BigQuery, if it isn't there already. Here again, you can enrich
+your existing data warehouse with other data sources by
+simply using SQL Joins. If you're already using
+other data products like AdWords or YouTube, you can look out for those easy connectors to get that data into BigQuery before you go off and build
+your own pipeline. Next is the feature selection and pre-processing step
+which is similar to what you've been exploring so
+far as part of this course. Here is where you put
+all your good SQL skills to the test in creating a great training set for
+your model to learn from. Keep in mind again
+as we mentioned, that BigQuery ML does some of the preprocessing for you
+like the one-hot encoding of your categorical variables into those numeric values that your model actually is expecting. After that, here's
+the actual syntax for creating a model
+inside of BigQuery, and short enough,
+that I can fit it all inside this one tiny
+little box of code. You simply say "Create model," give it a name, specify the mandatory option
+like model type, and pass in your SQL query
+with your training dataset, then hit "RunQuery" and
+watch your model run. After your model is trained, you'll see it as
+a new dataset object in BigQuery which you can actually click on and look at
+all its cool metadata stats. Or if you want to write the query against it to look at the evaluation, then you use
+ML.evaluate to evaluate the performance of
+your train model against the evaluation dataset. Here you can analyze loss metrics like Root Mean
+Squared Error, MSE, or RMSE for forecasting models, and other metrics like area
+under the curve, accuracy, precision recall for
+your classification models like the one that you see here. Once you're happy with
+your model's performance, you can then predict with it. With this even shorter query. Just write in and invoke that ML.predicts command on
+your newly trained model, and then you'll get back
+predictions as well as the model's confidence
+in those predictions. Now you'll notice a new field in the results when
+you run this query, where you see
+your label field with the word "predicted" added
+to the field name, and that's your model's
+prediction for that label.

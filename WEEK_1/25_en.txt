@@ -1,0 +1,183 @@
+In the last lesson, we showed off this SQL statement here
+running on the query engine. As any data analyst
+will tell you, exploring your dataset
+with SQL is often one of the first steps that you take to uncover those hidden insights. So what does this query
+actually doing? Care to you take a guess? Here we're counting the total number of trips taken on a public dataset for San Francisco's
+bike share trips. Now let's explore
+this public dataset together in greater detail
+with a quick demonstration. It's now time to
+dust off your SQL or structured query
+language skills as we explore some public datasets inside of Google BigQuery.
+Let's dive right in. So in this demo, how it got to this public BigQuery dataset, which is what we were
+looking at before the San Francisco
+bike share bike share trips, is from this publicly available dataset BigQuery public data. Now you might not have that inside of your
+Quick Labs account, or your own personal accounts, how you can get those datasets
+is by clicking Add Data, Explorer public data sets, choosing one of those, and it brings you right
+back into the console. So let me show you
+a couple of nifty things that I have picked up inside
+of BigQuery over the years. So now you have a ton of BigQuery public datasets that you
+can experiment with, once you find one you like, you can do a lot just knowing
+the name of the table. So we're not going to
+write any SQL yet. So I just got the table name, notice if it has hyphens in it, so we named the BigQuery project with the BigQuery
+public data with hyphens. That's when you need those
+backticks and technically, you only need them
+around the project name, but that's when you see those backticks which is that character there
+come into play. So you don't have hyphens
+anywhere in here, you actually don't need those, that's the first tip for you. Second tip, one of
+my absolute favorites, if you hold down
+at least on this Mac here, it's going to be the command
+key, the Windows key, it will highlight all the
+datasets in your query. Why is it useful? Because as soon as it's highlighted
+you can click on it. So if you have a bunch of different datasets that
+you just want to explore, or you inherited a query
+from somebody else, you can quickly
+get to the schema, the details in the preview
+of that particular table. So we're trying to
+get as far without writing any keystrokes in here. So we'll take a look
+at the schema. This is San Francisco
+bike share trips, you've got things
+like the trip id, everything we could
+possibly want, the duration in seconds, when it started,
+what stations are, and this is let your kind
+of mind wander for some of the cool insights that
+you could take a look at. Geographic data. We've got start, or latitude longitude,
+and latitude longitude, maybe some of
+those core GIS functions, and let's take a look at
+how many rows we have. We don't have to do count star
+or anything like that. We have almost 2 million rows, and about 375 megabytes in there. A best practice you don't
+want to do is select count star from a table limit 10, when just looking at
+a preview would suffice. So you saw the schema
+and the datatype, now you can actually go in here, look at all the total rows
+and see sampled data values. So you can see the station, where they stopped and started, everything and I'll get you
+a familiarity with them. If you want to create a table, you can click on Query table,
+it will ask you, "Hey, I am going to override
+everything in the Query Editor," sure that's fine. And it's can say select some columns from
+our bike share trips, here's a neat tip. Just figured out recently and props to the the BigQuery team. If I just wanted to see
+say the total number of trips that started
+from the station name, I'm just clicking
+on the field names, especially if you have field
+names that are really long, or if you don't want to type things in
+like I do in a live demo, then you can just click
+on these field names, and it will add them, and even if you
+had the commas for you which is kind of cool. And then what you can do
+inside of BigQuery, you can format the query. Again, even if you're
+experienced in SQL, is still kind of fun to try to do as much as you can without even typing in anything
+and into the editor. We are going to run that query, it doesn't really do much
+for us because it's just going to give the station name, it's still at the
+granularity level of the individual trip. So that's one of
+the things that you can do inside of BigQuery. If you are looking at
+that trip id, we can say, I want to have
+an aggregate function, like a count of all trips. Now, it doesn't just come into rows, you can
+do a count star. Some people like to put count one, or something like that. For readability, I'm going
+to keep the count of trip id just so somebody
+else inheriting my code, can very quickly see the level of granularity
+of this table, and we'll call this
+the number of trips. Now, naturally immediately,
+you're gonna get an error. If you work with SQL long enough, as soon as you do
+an aggregation in one field, all the rest of your other fields better be aggregated as well. But if it's just been a late night and you just want
+to open up the validator, you can say, "Hey, this references
+this start station name, your other person
+here is aggregated, but this one isn't," then you'd naturally what
+you want to do. You want to make sure that you do the group buyer and
+that's how we can say, "All right, we're rolling up all the trips into
+a single value, let's group those by each
+of the different stations." Now, if you remember your SQL, what's one of the things that
+you can do to get the most? First, you can do an order by which is
+going to be a sort, and you can order by
+the alias as we see here. Now, that you
+actually can't filter in a where clause by
+an aliase field because it actually doesn't exist when the query engine goes out and
+performs that where clause. So keep that in
+mind. That's where you can use things
+like temporary tables. So orders by the highest
+number of trips first. What does it that
+it say the top ten stations or something like that? Just make sure we format this. If you want to be a really
+in Evans good favor, you can add a comment at the top, this is like the top 10. Stations by volume, and
+go ahead and run that, and we'll see
+the most popular stations. And we got the
+San Francisco Caltrain. I can definitely
+vouch for this one. As soon as you get off the train, you need to get somewhere
+in San Francisco, and it's got 72,000 trips. Now if you want to experiment a little bit more,
+what you can do is, you can add in a filter
+and just say, "Hey, I'm looking for
+just those trips for 2018." There's another field
+that you can go back, hey, honestly I've already
+forgotten the field name. I'm going to hold
+down that button, and then I'm going to
+pop in the start date. Let's take a look
+at that start date. Start date is a time stamp. So let's see, where the start date is say
+after, what did we say? 2018, so we can do 2017, and the end of 2017, 12: 31 sure, after all this you can
+convert it if you wanted to, hopefully this will just
+take automatically. There's lot of date functions and extractions that you can do, but I think it was was it before like 20,000 or
+something like that. Seventy thousand I
+think for the Caltrain, and let's see if the Caltrain
+is still number one. Look! In the last year, Caltrain is actually dethroned.
+It's the Ferry Building. Super popular tourist spot if you haven't been
+to San Francisco yet and that takes
+the highest number of trips just for 2018. If you're doing a lot
+of this aggregation inside a BigQuery
+and then filtering, it's fun for these types
+of insights, but an easier way that you
+can do it a lot of times, is by actually just
+exporting the data, or linking it directly from a frontend visualization
+tool, like Data Studio. So you can actually say, "I don't want to actually
+limit the data here, I want to throw all the data visualization
+tool," and then, you can just have a filter for the users that
+actually has results. If I wanted to store
+this common query, I could do a couple
+of different things. I could save the query as
+my query inside of my project, personally just for me, or for all people
+that can see it, or I can save it as a view, but what I'd like to
+do since I commonly commit all my code
+version control, is I actually do a little bit of data
+definition language in SQL, SQL DDL, and that says I want a creation statement inside of the actual code itself. So people will wonder, "Hey, where on earth did you
+get this top 2018? " and actually it's not
+just 2018 it's anything after 2017 as well. For people yelling
+into the screens like, "Hey, it's not just
+2018," I got you. Create a replace table and we can just give
+it a table name, we need a dataset. Do we even have a data set. I don't think so. We need to have a data set first before we're just dumping
+things in here. We call this bike insights,
+or something like that. Dataset is just a collection. So now we have an empty data set, there is no tables
+in there, so you can start populating one. So we have bike insights. So create or replace
+table in the dataset, and we'll just call
+this "top trips 2018 and beyond." Try to keep the table
+names a little bit more succinct than mine and then once you've
+created that, you should automatically
+see this show up, boom! There you have it, and now
+you can actually have that. The query is not going to be
+re-ran every single time. Now you might be asking, what happens if
+the BigQuery of public data source updates after this? That's an excellent, excellent point. So your table just dumped
+all of this data here, it's going to be static now. So one of the things
+that you can do, is if you're looking to link
+this out to your dashboard, instead of creating a table, you could simply create a view, which a logical view. What that means is,
+every single time, and we'll just call
+this view since it says, "Hey, that object
+already exists." Every single time you can
+notice the icon changes, and you can actually click
+into here and you can look inside of the table, you can actually
+preview the data. Inside of the view, that preview is
+gone, why is that? Because the view is
+just an empty object. View is essentially
+a logical view and in this instance of SQL is just a stored query. So if you're trying
+to query the view, we can query the view, and then that actually
+just runs against the query that we had stored
+a little bit earlier. So it's high level recap,
+you've seen datasets, you've seen public datasets, you can explore them
+at your leisure. Some of the neat tips and
+tricks that you've seen, if you want to actually
+then go in and edit that view later,
+you can scroll down, bring that result back into here, look back at that schema, and keep exploring
+as you see fit. This is just the tip
+of the iceberg when it comes to data analysis. We just did a simple
+count of trips by the most popular
+station names. There's also datasets
+in there for weather, so you could do
+a frontend analysis to see. We have a bike share dataset for New York, or San Francisco. See where weather affects
+the riders the most, or how the bike share program is doing as a whole when it
+comes to seasonality. Is there a lot of
+more or less ridership in some of the winter months, you can check that
+all for yourself. You can do it all with
+SQL and not have to worry about building
+in any of the infrastructure behind the scenes, all that's managed
+for you inside of BigQuery. All right
+that's a wrap.

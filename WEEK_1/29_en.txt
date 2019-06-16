@@ -1,0 +1,121 @@
+Hi, my name's Shane Glass, and I'm the Program Manager for Google Cloud's Public
+Dataset Program. I'm here today to talk to you about the
+public datasets we have available in BigQuery
+and Google Cloud storage, as well as how they can
+support your workloads. Don't worry, there's
+a fun demo at the end, too. Now, the mission of
+our public dataset program is quite simply to maximize the availability and accessibility of high-value, high-demand public data
+assets through Google Cloud. We do this because
+we fundamentally believe that it makes life a little bit easier for our users. We currently have
+more than 130 datasets in our public dataset program, and these datasets are
+onboarded and maintained by Googlers with provider
+input and guidance. You can see here a sample of our data providers
+including NOAA, The US Census Bureau, The United Nations
+Statistics Division, The Federal Elections
+Commission, and others. We're constantly
+adding new datasets, and here are
+just three examples of recently added
+unstructured datasets all coming from NOAA, The National Oceanic and
+Atmospheric Administration. They include a high-resolution, rapid refresh weather model, the new GOES-16
+satellite imagery, and NOAA's National Water
+model that provides stream flow information across the continental United States. We also have datasets in BigQuery including the GitHub repository, the NOAA Global Surface
+Summary of the Day that provides meteorological
+observations going back to 1900, and the Ethereum
+Blockchain along with six other cryptocurrencies. But don't just take
+my word for it, let's see a demo specifically
+looking at how you can use some of our
+geospatial data sets to support your workflows. So let's look at
+a demonstration that tells you how many lightning strikes
+there were across the continental
+United States in 2018, thanks to the lightning data we have available from NOAA. You can see here a query
+that runs real quickly, and I'll give you
+a concatenation, and a little bit cleaner format
+so that it's easier to visualize this
+data in Data Studio. So we'll click run down here, and a little like they do in the cooking shows, I
+already have it finished. You can see here the number
+of lightning strikes with a center point of
+a one-tenth degree by one-tenth degree tile, that aggregates
+the strikes across the US. We'll take a look in Data Studio, and see what we
+notice trend-wise. We will flip over to our
+cooking show finished version, and you can see here
+the aggregated number of lightning strikes across
+a year on average. But this doesn't
+really tell us much as it's hard to see
+the specific data points. So let's zoom in using the zoom area function
+in Data Studio, and we'll zoom in to
+the United States, and this is primarily
+where the data comes from. Now, I'd originally expected Florida to have the most
+lightning strikes per day, but as you can see what
+really stands out on this map is the collection
+of data here in Oklahoma. Now, I'm curious, and I
+want to dig in further, but how can I use
+public datasets to do that? Now, we can use
+the geospatial capabilities or GIS that are built into BigQuery, and this helps
+BigQuery understand the geospatial relationship
+between datasets. Now, this particular query has a little preprocessing
+done under the hood, but we're hopeful to make that unnecessary here in
+the near future. For now, we'll
+take the shortcut, and so this query it
+gives us the return of a polygon for each child as well as the number of
+lightning strikes by day, but let's say we
+wanted to look at that in a more visual format. Well I'd come over to
+BigQuery Geo Vis., The geovisualization capability
+available for free. I can come down here,
+and run the same query, see my results and define
+which column is our geometry. From there, I give it a style
+that best fits our data. In this case, I've
+given an interval for the number of
+strikes and location, and I can tell you as
+a former Oklahoma resident, this makes a lot of sense to me. The areas of Oklahoma
+that are notorious for the storms are also seeing the greatest number
+of lightning strikes. But this is pretty broad. These are one-tenth
+of a degree by one-tenth of a degree tiles
+across the state. What is that actually mean? No one measures the world
+in tenth-of-a-degree tiles, instead we define the world by boundaries in
+most cases in the US, political and statistical
+boundaries such as either counties
+or census tracks. In this case, let's
+take a look at one of the 10 boundary datasets
+we have available in BigQuery through
+the public dataset program, that defines the space around
+each of these borders. In this case, we'll
+start with counties and that's a pretty popular
+one in Oklahoma. We run a pretty similar query
+except this time we'll take a little shortcut so that
+I only have to remember the state name as opposed
+to the state FIPS code. Again, we'll run our results, and we'll see the counties this time is
+the geometric column. Again, we can run
+our visualization and add style that meets
+the needs of our dataset. One of the nice features
+about BigQuery Geo Viz, is it allows me to go in, and click on
+an individual county, and see what the exact outputs were. We can see here for example, that Oklahoma County has about 300 lightning
+strikes per day, and this pretty closely lines
+up with what we saw from the other map except on
+a more understandable boundary. What if we want to look at something more granular though, say for instance zip codes. Again, we'll take
+the same dataset, but this time we'll define
+it by the spaces of zip codes or zip code
+tabulation areas in this case, and we'll run that through, and that gives you
+a better idea of maybe what zip code
+you want to avoid, assuming you don't like
+lightning strikes. We'll go through
+the same process, and we'll define the same style. This time, let's use a different method of defining
+that data-driven column. So let's use
+a linear extrapolation. We'll give it a low of 27. As you can see
+the minimum down here, and then we'll go up
+by 100 from here. So 120, 220, 320 and so on, and I'll want to get
+over my max of 499. I'll quickly set
+the colors down here, and I can scroll through
+some different options to find one that suits my palette. In this case, I want
+to do something pretty similar to the one I
+used in the counties, and you can see here again, there's a dark concentration here around Oklahoma City,
+but this time, I can drill down to
+a more granular level, and see which zip codes
+might make it the most likely for me to see some lightning strikes
+in my backyard. So this is just one example of what can be done with
+public datasets. If you're interested
+in learning more and figuring out how you can join public datasets
+with your private data sets, I encourage you to check
+out GCP marketplace, and click on Datasets
+on the left-hand side. There you can learn
+more about datasets, and get started in
+BigQuery today.

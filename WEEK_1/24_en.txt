@@ -1,0 +1,69 @@
+It's time to get a
+little more technical. So how does BigQuery
+actually work? Well it's actually
+two services in one as we hinted at earlier. It's both a Fast
+SQL Query Engine, and also a fully managed
+storage layer for loading and
+storing your datasets. Keep in mind that it's
+a serverless service, meaning that's fully managed. Let's take a look at what
+Google Cloud is managing for you as part of
+the BigQuery service. The two services are connected by Google's
+high-speed internal network. Recall that this
+super-fast network enables us to separate,
+compute and storage. So what does each service do? The short answer is that, the services are fully managed, so users like you
+and me don't have to worry about how
+BigQuery stores data on disk or how it autoscales
+machines for large queries. That said, it's
+a great learning exercise to understand how the services
+performed their magic, so you can better understand
+what's happening. First step, is the BigQuery
+storage service. The storage service
+automatically manages the data that you ingest
+into the platform. Data is contained
+within a project, in what are called datasets, which could have zero to
+many tables or views. The tables are stored as
+highly-compressed columns, each column of that table highly compressed and
+Google's internal Colossus file system which provides durability and
+global availability. This is the same data backend
+that powers some of Google's most
+popular applications like Google Photos and Gmail. All the data stored here is
+only accessible to you and your project team as governed by your access policy and we'll get into that a
+little bit more later. The storage service can do both bulk data ingestion and
+streaming data ingestion. So it'll work with
+huge amounts of data and also real-time data streams. The Query service
+runs interactive or batch queries that are
+submitted through the console, the BigQuery web UI, the BQ command line tool, or via the REST API. The REST API supported for many common
+programming languages. There are BigQuery connectors
+to other services such as Cloud Dataproc
+and Cloud Dataflow, which simplify creating those
+complex workflows between BigQuery and other GCP
+data processing services. The Query service
+runs interactive or batch queries that are
+submitted through the console, the BigQuery web UI, the BQ command-line tool, or via the rest API. The rest API supported for many common
+programming languages. There are BigQuery connectors
+to other services such as the one you've seen previously Cloud Dataproc and
+Cloud Dataflow, which simplify creating
+complex workflows between BigQuery and other GCP
+data processing services, that's why it's called
+the Google Cloud Platform, everything
+is inter-operable. The Query service can
+also run query jobs and data contained
+in other locations. So get this, you
+can run queries on tables that are a CSV file, for example, that are hosted somewhere else in Cloud Storage. But, before we get too
+excited about running queries on data that's not in BigQuery, like Google Sheets, you should know that BigQuery is most efficient when it's
+working off of data contained within its own what's called, Native BigQuery storage. The storage service and
+the Query service work together to internally organize the data to
+make your queries and run efficiently on
+terabytes and petabytes. They even optimize
+your SQL statements syntax, whenever possible after you
+hit that Run Query button. One of the most important
+controls you have over the resource
+consumption and costs, is controlling the amount of data that your query
+ultimately processes. In general, you only want to select the columns of data that you actually want to process in return as part of your output. A good rule of thumb is to start broad when you're first
+exploring the dataset, and then zoom in on just those critical fields
+and rows that you need. Keep in mind, at the time
+of this recording, BigQuery gives you
+one terabyte of query processing of bytes processed at no charge
+every month, and 10 gigabytes of storage
+as well to start you off. I'll provide a link to the
+pricing guide as a reference.

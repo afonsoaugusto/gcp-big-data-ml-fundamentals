@@ -1,0 +1,80 @@
+It's time to revisit the exciting topic of
+machine learning. Previously in this course, your data science team
+had to build a recommendation model
+using Spark ML, that you then ran on
+Cloud Dataproc for scale. Later in this module, you're going to be building
+custom models yourself with just SQL
+using BigQuery ML. But before we jump into the code, we need to expand
+our Machine Learning Foundation and then cover the models and the key terminology
+that you need to know before we set you off
+to make predictions. When people think of AI
+or machine learning, they generally think
+of the advanced models like you saw earlier
+on Google Photos, in video stabilization, and the smart reply feature in Gmail. Yes, later on this course
+you will build image models and
+unstructured data sets. But did you know that at Google, the majority of the models deployed are models that
+operate unstructured data. These aren't your 50 plus layer-
+deep neural networks that play StarCraft or chess. They're built on rows
+and columns of data, just like you've seen experimented with inside of BigQuery. So if you have
+a structured data set that you think is a good use
+case for machine learning, the next step is to find a model type that is
+appropriate for your use case. Out of all the models out there. What's a good place to start for you to start prototyping? Here's a decision tree - no pun
+intended - to help guide us. We'll walk through each of
+the different branches. The first question is, what kind of activity
+that you're engaging in? Is there a right answer
+or a ground truth that exists in your historical data that you want to
+model and predict? If so, you want to start
+with supervised learning. Alternatively, if you're
+interested in just ruminating and exploring the data for
+unknown relationships, you're welcome to try
+unsupervised learning with maybe a clustering
+model to start. Unsupervised learning is outside the scope of this course, but I'll link you to a few resources
+to show how you can do it quickly with a clustering model
+inside of BigQuery ML. The majority of the problems
+we're going to tackle here are in these three areas: First, forecasting. That's like predicting
+the next month's sales figures, the demand for your product. Second, classifying. Like high medium or low risk events or buy
+or no buy decisions. Third, maybe you recommending something like a product
+for a given user. An easy way to tell if you're
+forecasting or classifying, is to look at the type of
+label or special column, we'll cover that more later, of data that you're predicting. Generally, if it's
+a numeric datatype like units sold or profits earned,
+you're doing forecasting. If it's a string value, you're typically
+doing classification. This row is either in
+this class or this other class, and if you have
+more than two classes or buckets like high, low, medium, you're doing what's called multi-class
+classification. Now, once you have
+your problem outlined, it's time to go
+shopping for models which will be the tools to
+help you achieve your goal. Now there are
+many different model types for you to choose from
+for these problems. We're recommending you start with the simpler ones which can still be highly accurate to see if
+they meet your benchmark. By the way, you're
+ML benchmark is the performance threshold
+that you're willing to accept from your model
+before you even allow it to be near
+your production data. It's critical that you
+set your benchmark before you train your model. So you can really be truly objective in your decision making to use the model or not. Now, on to types of models. For forecasting, try
+a linear regression. For classification, try
+logistic regression. By the way it's called binary
+logistic regression. If you have a just two classes or buckets that an observation could fall into or multi-class
+if it's more than two. For recommendations, try
+matrix factorization which is a commonly used algorithm
+for problems involving a matrix of users and items. Like your housing
+rentals example, and here's the complete
+picture again. You'll see later with BigQuery ML that you can just specify a model type equal to
+linear regression for example, and BigQuery handles
+the rest for you. What didn't you see
+here that you might have heard of in terms
+of a model type? There's many different
+types of models out there that you may not
+see on this chart. More complex models like
+deep neural networks, decision trees, random forests are also
+available for modeling. You'll even build a custom model using neural architecture
+search to build a deep neural network later
+on in this course and you'll do so without using any code -
+that's what Auto ML. It's my overall recommendation
+that even if you know how to build
+advanced models, that you start with
+the simpler ones first. Because they often train faster and they give
+you an indication of whether not ML is even a viable solution
+for your problem.

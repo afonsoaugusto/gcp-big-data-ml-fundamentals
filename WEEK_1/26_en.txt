@@ -1,0 +1,74 @@
+As we saw in the demo, a lot of the time you
+aren't really sure of the quality of the
+data in your dataset, so you can use SQL to explore
+and filter for anomalies. Here, we filtered for those customer records
+who did not provide a birthday by setting "member birth year is
+not null" as a filter, I'll provide a SQL syntax reference so that you can bookmark
+and refer to it later. Well, I've been working
+with SQL for many years, I will freely admit
+that I don't have all of the functions and
+clauses committed to memory, and I'm constantly Google searching for
+that SQL syntax too. If you prefer to use a UI to inspect the quality
+of your datasets, consider using Cloud Dataprep, which is a GCP product offered in partnership
+with Trifacta. Using Dataprep, you can
+load in a sample of your BigQuery dataset
+into an exploration view, which will then provide you with some neat column histogram
+charts as you see here. Now, this specific dataset in
+this visual is the location of all the weather
+stations around the world for
+this specific dataset. The histograms in the
+state column on the right, they highlight the data that skewed towards
+three or so values. Which we can infer
+means that there are some states that have many, say a lot of weather stations. Maybe large states
+like California. You can actually hover
+over the bars to see the actual values,
+that's your frequency. What I've highlighted here on the horizontal bar graph
+is how well the values in a column of data mapped to the expected data type
+for that column. Dataprep knows what the
+allowable or enumerated values for US states should be, and it is telling us that 19,940 missing or null values for state. Why do you think that could be? Well as you might've guessed, these weather station readings could come in from
+all over the world, and state is an optional field. In Dataprep, if I
+wanted to create a pipeline to filter
+all incoming records to only include weather
+station ratings where the country field is equal to the United States or the US, you can use the UI
+to quickly set up those transformation steps
+in what's called a recipe. After your transformation
+recipe is complete, when you run
+a Cloud Dataprep job, it farms out the work
+to Cloud Dataflow which handles
+the actual processing of your data pipeline at scale. The main advantage to
+Cloud Dataprep is for teams want to use a UI
+for data exploration, and want to spend minimal time coding to build their pipelines. Lastly, with Dataprep
+you can schedule your pipeline to run at
+regular preset intervals. But, if you prefer to do all of your SQL and exploration work
+inside of BigQuery, you can also now use SQL to setup scheduled queries by using
+the @run_time parameter, or the query scheduler
+and the BigQuery UI. I'll provide a link that
+shows you how to set up the scheduled queries in
+the course resources. Now that you're
+familiar with some of the great insights that you
+can glean from your data, it's time to talk data security. So your insights are
+only shared with those people who should actually have access to see your data. As you see here in this table, BigQuery inherits
+data security roles that you and your teams
+set up in Cloud IAM. For example, if you're an overall project viewer
+in Cloud IAM, you can start BigQuery jobs, but you cannot create
+new datasets yourself. If you're an editor you
+can create datasets, and if you are an owner, you can also delete datasets. Keep in mind that default
+access datasets can be overridden on
+a per dataset basis. Beyond Cloud IAM,
+you can also set up very granular controls
+over your columns and rows of data in BigQuery using the new data catalog service and some of the advanced
+features in BigQuery, such as authorized views. Data security is more
+than simply applying the right project permissions in roles during your
+dataset creation. You should also have a
+written and circulated Data Access Policy for
+your organization, and it should specify
+how and when and why data should be
+shared, and with whom. One first step to ensure healthy data access controls
+is to periodically audit the users and groups
+associated with your Google Cloud
+Platform project in your individual datasets. Do these users need to
+really be owners or admins or would a more restrictive roles suffice for their job duties? A second pitfall is
+working with testing and editing datasets
+only in production. Much like with code, it's often wise to have a completely separate GCP project or dataset for testing
+different environments, to prevent unintentional data
+loss or accidental errors.

@@ -1,0 +1,64 @@
+It's now time to cover
+how you can create these models with
+SQL in BigQuery. We'll review what
+the project phases you can expect to hit
+along the way too. If you've worked with
+ML models before, you know that building
+and training them can be very very time intensive. For common data scientists, you must first
+export small amounts of data from your datastore into your IPython Notebook
+and into data handling frameworks
+like pandas for Python. If you're building
+a custom model, you first need to transform preprocess all that
+data and perform all that feature engineering before you can even
+feed the model data in. Then, finally, after you've
+built your model in say, TensorFlow and
+other similar library, then you train it locally
+on your laptop or on a VM. Doing that with
+a small model then requires you to go
+back and create more new data features and improve performance and you repeat and repeat and repeat. That's hard so you stop
+after a few iterations. Also, I mentioned
+IPython notebooks in Python. In the past, if you weren't familiar with
+these technologies, ML was left to the data scientists of your team
+and out of your reach. But now, you can do it ML in your structured
+data sets inside of BigQuery using SQL in
+just a few minutes. Take a look at how
+you can perform ML and BigQuery with
+just a few steps. Step one, you create the model
+with just a SQL statement. Here, we'll use
+a bike share dataset. Step number two, write a SQL prediction query
+and invoke ML.predict. Step number three,
+profit, that's it. You've got a model and then
+you can review the results. Well, in reality, there
+are more than three steps. You have to evaluate the model, but the main point is that, if you know basic SQL, you can now do machine
+learning which is pretty cool. BigQuery ML was designed
+with simplicity in mind. To that end, in order to
+define the ML hyperparameters, which is a fancy way of saying
+the knobs that are set on the model before the
+training starts, things like the learning rate or even a split between training and test data
+which is critical. BigQuery ML automatically does that for you with default values. In addition, with the model
+options, if you wanted to, you could also set yourself those regularization or
+different strategies for splitting or testing
+that data and manually setting the learning rate and other different parameters
+hyperparameters. So what do you get
+out of the box? First, BigQuery ML runs on standard SQL, it's
+inside of BigQuery. So you can use normal SQL syntax like UDFs, user-defined
+functions, sub-queries and joins across
+other different tables to create your training datasets
+to feed into the model. Now, for model types, right now you can
+either choose for linear regression
+for forecasting or binary multiclass logistic
+regression and a team is busy, very busy adding
+more types as we speak. So I'll provide a link so you can stay on top of
+that documentation. As part of your model evaluation, you also get access
+to fields like the ROC curve as well
+as accuracy, precision, and recall - this is for
+classification models that you can simply select from
+where the SQL statement after your model is trained or if you don't want
+to write any code you can click on the UI click
+on that trained model, which is now an object
+inside of your dataset and there's a tab for that evaluation that you can take
+a look at as well. One of my favorite things
+is you can also inspect the weights of the model and perform a feature
+distribution analysis. Now, we're getting into
+that a lot more later. Next, let's walk through the phases of a typical
+BigQuery ML project.

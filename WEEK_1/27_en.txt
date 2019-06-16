@@ -1,0 +1,83 @@
+In addition to super fast
+query execution times, BigQuery also manages the storage and the metadata
+for your data sets. As we mentioned earlier, BigQuery can ingest
+data sets from a variety of different formats. Once inside BigQuery
+native storage, your data is then fully managed
+by the BigQuery team here at Google and it's
+automatically replicated, backed up, and set up to
+autoscale for your query needs. You can even recover
+recently deleted tables within a certain period too. You also have
+the option of querying external data sources
+directly as we talked about, which bypasses
+BigQuery's managed storage. For example, if you have a raw CSV file in Google Cloud
+Storage or a Google Sheet, you can write a query
+against it without having to ingest the data
+into BigQuery first. A common use case
+for this is having external data source that is relatively small but
+constantly changes, like say a price list
+for commodities that another team maintains
+and continually updates. But there are
+a few reasons why you maybe should consider
+not doing this. The first is that the data
+consistency coming in from that external or federated
+data source is not guaranteed. If the external data
+source changes mid-flight, BigQuery doesn't guarantee that those updates were
+actually captured. If you're concerned about that, consider building
+a streaming data pipeline into BigQuery with
+Cloud Dataflow, which will be
+the topic that we'll cover in the next module. In addition to ingesting
+data sets as a batch, like uploading a CSV, you can also stream records
+into BigQuery via the API. Note that there are
+a few coder restrictions that you should be aware of. The max row size for a streaming
+insert is one megabyte and the maximum throughput is 100,000 records per
+second per project. If you need higher throughput, say in the order of millions
+of records per second, for use cases you
+can consider it like application logging or
+real-time events tracking. Consider using Cloud Bigtable
+as a data sync instead. Before you start
+streaming thousands of records into
+BigQuery and the API, consider the other options you could have for
+your streaming solution. If you have data that
+needs to be transformed or aggregated mid-flight into
+table and row format, or joined against
+other data sources as side inputs midstream, or if you want to
+take just a window or a segment of that data, you should really consider using Cloud Dataflow for
+your streaming data pipeline. We'll cover working
+with that solution in the very next module. Lastly, if you're familiar
+with database design, you've likely heard
+of the concept of normalization which is the act of breaking up one huge master table into component child tables. So you're storing one fact in one place and not repeating
+yourself across records. Take this taxi company,
+for example. You could track payments,
+timestamps of events, and geographic
+lat-longs, and pickups, and drop-offs, all in
+separate tables as you see here. What would you need to do
+to bring all these data sources together for reporting? If you said do
+one massive big SQL join, that's absolutely right. But while breaking apart
+database tables into silos is a common practice
+for relational databases, like mySQL or SQL Server. For data warehousing
+and reporting, let me show you a cool new way to structure
+your reporting tables. Take a look at
+the table at the top. What do you notice that
+you haven't seen before? First, you've
+just one row of data. But it looks like you have
+four, what's going on? Well, event.time, that field is actually
+an array datatype. You can have multiple data
+values, in this case, timestamp for a single taxi
+booking in that single row. Likewise, with
+the corresponding array of status values at that timestamp. So already in one table, you get the high-level, if you wanted of
+total number of orders, but you could also
+get the number of completed orders without having to do any of those complex joins. The second insight is
+a bit more hidden. It's that some of the column names look almost like a family name, event.status, event.time
+or destination.latitude, destination.longitude. These grouped fields are part of a SQL data type
+known as a STRUCT. If you were to inspect
+this schema for this table, you'd notice that for
+the event field datatype, it's of datatype record which indicates that this is
+a data type of a STRUCT. You can think of a STRUCT
+as essentially a collection of other fields, kind of like a table. From a reporting standpoint, you can have many nested STRUCTs
+within a single table, which is conceptually like having many other tables pre-joined, which would get you excited, into one big table. Pre-joined for you means
+faster queries for larger data sets and no more of those complex 15 table joins. Now, a huge benefit
+of doing it this way is that you
+have a single table which has all the fields in a single place for
+you to analyze. You don't need to worry
+about the join keys or differing levels of table
+granularity anymore.

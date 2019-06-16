@@ -1,0 +1,84 @@
+Now that you're
+familiar with the types of models to choose from, we need to feed in high-quality training
+data for them to learn. That's the "learn" part
+of Machine Learning. Machine is the tool or algorithm
+like linear regression. The learning is the insights
+that the model has into the relationships between
+the known and unknown data. That's why we call it modeling. You're trying to
+approximate reality, based on what you do know. The best way I've found to learn the key concepts of
+Machine Learning on Structured Datasets, is with this quick example. Here, our scenario will be predicting customer lifetime
+value with a model. Lifetime value or LTV, is a common metric in marketing, which is where we'll
+estimate how much revenue, or profit we can expect
+from a customer, given their history or customers
+with similar patterns. The dataset that we'll use is a Google Analytics
+E-commerce dataset, on Google's very own online merchandise store
+that sells swag, like t-shirts and other products that you see listed here. Our goal is to target high-value customers with special promotions
+and incentives. After exploring
+the available data, we came up with a few fields that we thought might be
+useful to the model, and to determining whether
+or not a customer is high value based on
+their behavior with our website. These fields include, how
+many lifetime page views? How many total visits? What's the average time that
+they spend on our site? What the total revenue that
+they've brought in is? The count of their
+previous transactions with us on our site. Now that we have some data, and note we'll need
+a lot more than just the seven records
+that you see here. We'll be more like on the order
+of tens of thousands, then we can get ready to
+feed it into our model. But before we do, we need to
+define our data in columns in the language that
+data scientists and other ML professionals use. Taking the E-commerce example we had in the previous lesson. A record or a row is
+an instance or an observation. In this picture
+that you see here, we have eight instances. A label is the correct answer
+that's known historically. Like how much this
+particular customer spent, and that's the field that's in the future data is
+unknown or missing. Hence the model,
+training and prediction. For example, if we know that
+a customer who has made transactions in the past spends a lot of time
+on our website, often turns out to have
+a high LTV for revenue, we could predict the same
+for newer customers, who are on that same
+spending trajectory. Here we're forecasting a number. So do you remember which
+model type we should use? If you said linear regression as a starting point,
+it's exactly right. Now notice how I didn't say that, if transactions are greater
+than 10 for this row, then you can expect the revenue
+to be greater than 1000. Remember that in ML, we
+feed in columns of data, and then let the
+model figure out the relationship to best
+predict that label. It may even turn out that
+some of the columns are not useful at all to the model
+in predicting the outcome. I'll show you how you can
+find this out later by inspecting what the
+model actually learned. Labels can also be binary values. Like if they are a
+high-value customer, or not. That's shown here. Knowing that what you're
+trying to predict, the class, the number, again, that will greatly influence the type of model
+that you're going to choose. So we've got our label field
+there on the right, as high-value customer, or not. So what do we call
+all these other data columns in our table? Those columns, are
+called features, or potential features at least. Those are our inputs
+to the model. Each column of data is like a cooking ingredient that you can use from
+your kitchen pantry. As my young daughter
+often finds out, cooking with all of the ingredients can
+often spoil your dinner. It's the process of feature engineering and you've got to
+whittle it down. Now that's sifting process where you're going
+through your data, that's really expect to
+spend the majority of your time as
+a data analyst engineer or even a data scientist. It's an art form as much
+as it is a science. Understanding the quality
+of the data in each column, and working with other teams
+to get more features or more history is often the
+hardest part of any ML project. You can even combine or transform these features in a process
+called Feature Engineering. It sounds fancy, right? Well, if you've ever
+created calculated fields in SQL or combining
+columns together, you've just done
+some basic feature engineering. Also, BigQuery ML does
+a lot of hard work for you, like automatic one-hot encoding
+of categorical variables, and things like splitting
+your dataset into training and evaluation
+automatically too. Let's talk now about
+predicting on future data. Say some new data comes in, that you don't have a label for. You don't know whether or
+not these new customers will have a high LTV or not. But you do have a rich history of labeled examples for
+your model that train on. So you can train a model
+on the known data up top, and then once trained and we're happy with the
+model's performance, we can then use it to predict on that bottom set of data,
+that unknown data.

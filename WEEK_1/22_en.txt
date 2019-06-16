@@ -1,0 +1,92 @@
+Hi, Evan here, and
+in this module, we'll explore in great detail, some of the cool
+things that you can do with SQL inside of BigQuery. Now I know what some of
+you may be thinking. SQL, isn't that just used for selecting and returning
+records for my database? Well, as the title shown here as already probably spoiled it, you can now build machine
+learning models with SQL too. It's literally my favorite feature in Google Cloud Platform, so I'll spend lots of time walking you through
+how you can create and analyze the performance
+of your ML models right within BigQuery
+where your data lives. But before we jump
+headlong into ML, we'll first introduce
+you to BigQuery as a service which allows you to have a petabyte-scale,
+analytics data warehouse. You'll soon learn
+that BigQuery is actually two services in one, a fast SQL Query Engine and
+fully managed data storage. Then, we'll show you some of the other cool built-in features, like using GIS functions
+on your Geographic data, and how you can even visualize
+those insights on maps. Next, we'll expand on our course theme of
+applying MLT or datasets, by looking at how to choose the right model type for
+your structured data. Lastly, we'll build
+a custom model using just SQL with BigQuery ML. I'll also show you how
+I commonly organize my ML projects and some
+advanced BigQuery ML features that let you do
+things like see which fields the model thinks are most important in making
+those predictions. Sound good? Let's get started. BigQuery is designed to be an easy-to-use data warehouse. We can focus on writing
+SQL statements on small or large datasets without worrying
+about infrastructure. If you've never
+written SQL before, I'll also provide resources and labs to get you up
+to speed as we go. So that's point Number
+1, it's serverless. BigQuery's default pricing
+model is pay as you go. Where you pay for the number of bytes of data that your query processes and any other permanent data that's
+stored inside of BigQuery. Now there is some magic
+built-in like automatic caching
+of query results, so you don't end up
+paying for the same query returning the same data
+twice, which is cool. If you want to have a set bill
+every month instead, you can subscribe to
+flat tier pricing, where you get a special
+reserved amount of resources for your dedicated use. Data in BigQuery is encrypted
+at rest by default. You can also specify
+the geographic locality of your data if you need to meet things like regulatory
+requirements. Controlling access
+to your data can be as granular as
+specific columns, say any column tag with PII, Personally Identifiable
+Information or specific rows, like if your marketing
+team only needs access to see certain rows
+in one of your tables. BigQuery works in tandem
+with Cloud IAM to set these roles and permissions
+at a project level, and then inherited down
+to the BigQuery level. We'll discuss data access
+in detail a bit more later. SQL as a language has been
+around since the 1970s, and just watching
+the functionality added to the language over time
+has been awe-inspiring. You can now perform
+those GIS functions like distances from the lat
+long points and much more. You data itself, think
+of your datasets. It most likely has some kind of
+geographic component like city, state, zip code,
+latitude, longitude. So now it's high time to unlock those additional insights. Lastly, BigQuery as
+both a data warehouse and an Advanced Query Engine
+is foundational for your AI and ML workloads. It's common for data
+analysts, engineers, and data scientists to
+use BigQuery to store, transform, and then feed those large datasets directly
+into your ML models. This is a huge leap
+over training ML models on just a few small samples of your data locally on
+your laptop or desktop. You can now train on all the data that you have available. That's big news for ML. That's the elastic
+data warehouse nature of BigQuery for ML datasets. Beyond that, as you've
+seen in the demo, you can now write ML models directly in BigQuery using SQL. This is a great start
+for modeled prototyping, as you can quickly
+engineer what features to use right where your data lives. So what does
+a typical data warehouse solution architecture look like? Take a look at the green box. BigQuery is the analytics
+engine that sits at the end of a data pipeline
+like Cloud Dataflow. It stores all the incoming
+data from the left and allows you to do your analysis and your model-building. On the far right, you
+can see the myriad of visualization
+another analytical tools that you can
+connect through BigQuery as
+a backend data source. For ML engineers, once
+your dataset is in BigQuery, you can easily call it from your IPython ML notebooks in the cloud with
+just a few commands. If you're a business
+intelligence analyst, you can connect out to
+visualization tools like: Data Studio, Tableau, Looker,
+QlikView, and more. Lastly, and worth
+mentioning here, if you have a team
+of analysts who prefers to work in spreadsheets, you can now query your smaller huge BigQuery datasets directly, all of that data directly from Google Sheets and perform common operations
+like PivotTables, and more on the entirety
+of your dataset. So no more limitations of
+rows inside of sheets. So new feature, I'll send
+a link so you can check it out. But the key takeaway
+is that BigQuery is a common sink or staging area for your data
+analytics workloads. Once your data is there, your data analysts, business
+intelligence developers, and ML engineers can then
+be granted access to your data to start creating
+their very own insights.

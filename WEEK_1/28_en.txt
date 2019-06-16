@@ -1,0 +1,35 @@
+BigQuery natively supports GIS, or Geographic Information
+System functions. For gleaning insights from
+your geographic data points, like longitude and latitude. Let's examine how you can
+put these into practice. In this SQL query
+that you see here, we are plotting
+the path of a hurricane using SQL and GIS functions. We first create
+a geographic point based on lat long data. We also bring in other useful
+fields, like wind speed, the distance the hurricane
+is to land or landfall, and the radius of the hurricane. We query all this raw data from the BigQuery public dataset
+from NOAA on hurricanes, and filter for one
+hurricane in particular. You can see that in
+the Where clause, that's hurricane Maria in 2017. Then, we geographically bound the points that we
+care about with the "GIS within" function to ensure that it'll fit on
+the map or the area of focus. So we can visualize these points. Lastly, we explore
+our points using Geo Viz, which is a web tool for visualization of
+geospacial data in BigQuery, but it uses the Google Maps APIs. Here you can see and
+track the hurricane making landfall in the US. One of the best ways
+to get better at data analysis is by practicing
+in a variety of data sets. The BigQuery Public Datasets
+program partners with companies and organizations to host their datasets in BigQuery, and then make them available
+for analysis by the public. Currently, there are well over a 100 different datasets
+for you to explore, and you can find them
+all in the BigQuery web UI under Explore Data, which is located right
+above your own datasets. So let's do a quick activity. Explore a BigQuery public
+dataset that interests you. Then think of the following
+questions to answer. What's the name of the dataset? How many records are
+in some of the tables? Are there any data
+quality concerns after you previewed that data? After analyzing this schema, what types of insights do
+you think you could find? Lastly, are there
+any other datasets that you can potentially join against this one for additional insights? Take a moment to find and
+explore your dataset, and then we'll bring
+in the head of Google Cloud BigQuery
+Public Datasets Program, Shane Glass, and
+he'll explore one of his favorite BigQuery
+public datasets in a demo.

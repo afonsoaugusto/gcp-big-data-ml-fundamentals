@@ -439,3 +439,638 @@ dfToSave.write.jdbc(url=jdbcUrl, table='Recommendation', mode='overwrite')
 * It’s the same API, but Google implements it better
 
 * [Migrating Hadoop to Google Cloud Platform](https://cloud.google.com/solutions/migration/hadoop/hadoop-gcp-migration-overview)
+
+## Introduction to BigQuery - 22_en
+
+### BigQuery is a petabyte-scale fully-managed data warehouse
+
+1. It's serverless
+2. Flexible pricing model
+3. Data encryption and security
+4. Geospatial data types & functions
+5. Foundation for BI and AI
+
+![Typical BigQuery DW Architecture](../images/TypicalBigQueryDWArchitecture.png)
+
+## Demo: Query 2 billion lines of Github code in less than 30 seconds- 23_en
+
+[Demo](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/bdml_fundamentals/demos/bigquery-analyze-github.sql)
+
+
+## BigQuery: Fast SQL Engine - 24_en
+
+### BigQuery is two services in one
+
+* Fast SQL Query Engine 
+* Managed storage for datasets
+
+## Demo: Exploring bike share data with SQL - 25_en
+
+## Data quality - 26_en
+
+## BigQuery managed storage - 27_en
+
+![Streaming Records into BigQuery](../images/StreamingRecordsintoBigQuery.png)
+
+## Insights from geographic data - 28_en
+
+## Demo: Analyzing lightning strikes with BigQuery GIS - 29_en
+
+[Datasets Marketplace](https://console.cloud.google.com/marketplace/browse?filter=solution-type:dataset)
+
+## Choosing a ML model type for structured data - 30_en
+
+![Choose Model For Structured Data](../images/ChooseModelForStructuredData.png)
+
+## Predicting customer lifetime value - 31_en
+
+## BigQueryML: Create models with SQL - 32_en
+
+![Create a Model](../images/CreateAModel.png)
+
+![Create a Precition Query](../images/CreateAprdictionQuery.png)
+
+## Phases in ML model lifecycle - 33_en
+
+![End-To-End BQML Process](../images/EndToEndBQMLProcess.png)
+
+## BigQuery ML: key features walkthrough - 34_en
+
+![Big-Query ML Cheat sheet](../images/BigQueryMLCheatsheet.png)
+
+![Working Big Query ML](../images/WorkingBigQueryML.png)
+
+## Lab: Predict Visitor Purchases with a Classification Model with BigQuery ML
+
+* Use BigQuery to find public datasets
+* Query and explore the ecommerce dataset
+* Create a training and evaluation dataset to be used for batch prediction
+* Create a classification (logistic regression) model in BQML
+* Evaluate the performance of your machine learning model
+* Predict and rank the probability that a visitor will make a purchase
+
+[](https://console.cloud.google.com/bigquery?p=data-to-insights&d=ecommerce&t=web_analytics&page=table)
+
+```sql
+#standardSQL
+WITH visitors AS(
+SELECT
+COUNT(DISTINCT fullVisitorId) AS total_visitors
+FROM `data-to-insights.ecommerce.web_analytics`
+),
+
+purchasers AS(
+SELECT
+COUNT(DISTINCT fullVisitorId) AS total_purchasers
+FROM `data-to-insights.ecommerce.web_analytics`
+WHERE totals.transactions IS NOT NULL
+)
+
+SELECT
+  total_visitors,
+  total_purchasers,
+  total_purchasers / total_visitors AS conversion_rate
+FROM visitors, purchasers
+```
+
+```json
+[
+  {
+    "total_visitors": "741721",
+    "total_purchasers": "20015",
+    "conversion_rate": "0.026984540008979117"
+  }
+]
+```
+
+```sql
+SELECT
+  p.v2ProductName,
+  p.v2ProductCategory,
+  SUM(p.productQuantity) AS units_sold,
+  ROUND(SUM(p.localProductRevenue/1000000),2) AS revenue
+FROM `data-to-insights.ecommerce.web_analytics`,
+UNNEST(hits) AS h,
+UNNEST(h.product) AS p
+GROUP BY 1, 2
+ORDER BY revenue DESC
+LIMIT 5;
+```
+
+```json
+[
+  {
+    "v2ProductName": "Nest® Learning Thermostat 3rd Gen-USA - Stainless Steel",
+    "v2ProductCategory": "Nest-USA",
+    "units_sold": "17651",
+    "revenue": "870976.95"
+  },
+  {
+    "v2ProductName": "Nest® Cam Outdoor Security Camera - USA",
+    "v2ProductCategory": "Nest-USA",
+    "units_sold": "16930",
+    "revenue": "684034.55"
+  },
+  {
+    "v2ProductName": "Nest® Cam Indoor Security Camera - USA",
+    "v2ProductCategory": "Nest-USA",
+    "units_sold": "14155",
+    "revenue": "548104.47"
+  },
+  {
+    "v2ProductName": "Nest® Protect Smoke + CO White Wired Alarm-USA",
+    "v2ProductCategory": "Nest-USA",
+    "units_sold": "6394",
+    "revenue": "178937.6"
+  },
+  {
+    "v2ProductName": "Nest® Protect Smoke + CO White Battery Alarm-USA",
+    "v2ProductCategory": "Nest-USA",
+    "units_sold": "6340",
+    "revenue": "178572.4"
+  }
+]
+```
+
+
+```sql
+# visitors who bought on a return visit (could have bought on first as well
+WITH all_visitor_stats AS (
+SELECT
+  fullvisitorid, # 741,721 unique visitors
+  IF(COUNTIF(totals.transactions > 0 AND totals.newVisits IS NULL) > 0, 1, 0) AS will_buy_on_return_visit
+  FROM `data-to-insights.ecommerce.web_analytics`
+  GROUP BY fullvisitorid
+)
+
+SELECT
+  COUNT(DISTINCT fullvisitorid) AS total_visitors,
+  will_buy_on_return_visit
+FROM all_visitor_stats
+GROUP BY will_buy_on_return_visit
+```
+
+```json
+[
+  {
+    "total_visitors": "729848",
+    "will_buy_on_return_visit": "0"
+  },
+  {
+    "total_visitors": "11873",
+    "will_buy_on_return_visit": "1"
+  }
+]
+```
+
+```sql
+SELECT
+  * EXCEPT(fullVisitorId)
+FROM
+
+  # features
+  (SELECT
+    fullVisitorId,
+    IFNULL(totals.bounces, 0) AS bounces,
+    IFNULL(totals.timeOnSite, 0) AS time_on_site
+  FROM
+    `data-to-insights.ecommerce.web_analytics`
+  WHERE
+    totals.newVisits = 1)
+  JOIN
+  (SELECT
+    fullvisitorid,
+    IF(COUNTIF(totals.transactions > 0 AND totals.newVisits IS NULL) > 0, 1, 0) AS will_buy_on_return_visit
+  FROM
+      `data-to-insights.ecommerce.web_analytics`
+  GROUP BY fullvisitorid)
+  USING (fullVisitorId)
+ORDER BY time_on_site DESC
+LIMIT 10;
+```
+
+```json
+[
+  {
+    "bounces": "0",
+    "time_on_site": "15047",
+    "will_buy_on_return_visit": "0"
+  },
+  {
+    "bounces": "0",
+    "time_on_site": "12136",
+    "will_buy_on_return_visit": "0"
+  },
+  {
+    "bounces": "0",
+    "time_on_site": "11201",
+    "will_buy_on_return_visit": "0"
+  },
+  {
+    "bounces": "0",
+    "time_on_site": "10046",
+    "will_buy_on_return_visit": "0"
+  },
+  {
+    "bounces": "0",
+    "time_on_site": "9974",
+    "will_buy_on_return_visit": "0"
+  }
+]
+```
+
+```sql
+CREATE OR REPLACE MODEL `ecommerce.classification_model`
+OPTIONS
+(
+model_type='logistic_reg',
+labels = ['will_buy_on_return_visit']
+)
+AS
+
+#standardSQL
+SELECT
+  * EXCEPT(fullVisitorId)
+FROM
+
+  # features
+  (SELECT
+    fullVisitorId,
+    IFNULL(totals.bounces, 0) AS bounces,
+    IFNULL(totals.timeOnSite, 0) AS time_on_site
+  FROM
+    `data-to-insights.ecommerce.web_analytics`
+  WHERE
+    totals.newVisits = 1
+    AND date BETWEEN '20160801' AND '20170430') # train on first 9 months
+  JOIN
+  (SELECT
+    fullvisitorid,
+    IF(COUNTIF(totals.transactions > 0 AND totals.newVisits IS NULL) > 0, 1, 0) AS will_buy_on_return_visit
+  FROM
+      `data-to-insights.ecommerce.web_analytics`
+  GROUP BY fullvisitorid)
+  USING (fullVisitorId)
+;
+```
+
+```sql
+SELECT
+  roc_auc,
+  CASE
+    WHEN roc_auc > .9 THEN 'good'
+    WHEN roc_auc > .8 THEN 'fair'
+    WHEN roc_auc > .7 THEN 'not great'
+  ELSE 'poor' END AS model_quality
+FROM
+  ML.EVALUATE(MODEL ecommerce.classification_model,  (
+
+SELECT
+  * EXCEPT(fullVisitorId)
+FROM
+
+  # features
+  (SELECT
+    fullVisitorId,
+    IFNULL(totals.bounces, 0) AS bounces,
+    IFNULL(totals.timeOnSite, 0) AS time_on_site
+  FROM
+    `data-to-insights.ecommerce.web_analytics`
+  WHERE
+    totals.newVisits = 1
+    AND date BETWEEN '20170501' AND '20170630') # eval on 2 months
+  JOIN
+  (SELECT
+    fullvisitorid,
+    IF(COUNTIF(totals.transactions > 0 AND totals.newVisits IS NULL) > 0, 1, 0) AS will_buy_on_return_visit
+  FROM
+      `data-to-insights.ecommerce.web_analytics`
+  GROUP BY fullvisitorid)
+  USING (fullVisitorId)
+
+));
+```
+
+```json
+[
+  {
+    "roc_auc": "0.724588",
+    "model_quality": "not great"
+  }
+]
+```
+
+```sql
+CREATE OR REPLACE MODEL `ecommerce.classification_model_2`
+OPTIONS
+  (model_type='logistic_reg', labels = ['will_buy_on_return_visit']) AS
+
+WITH all_visitor_stats AS (
+SELECT
+  fullvisitorid,
+  IF(COUNTIF(totals.transactions > 0 AND totals.newVisits IS NULL) > 0, 1, 0) AS will_buy_on_return_visit
+  FROM `data-to-insights.ecommerce.web_analytics`
+  GROUP BY fullvisitorid
+)
+
+# add in new features
+SELECT * EXCEPT(unique_session_id) FROM (
+
+  SELECT
+      CONCAT(fullvisitorid, CAST(visitId AS STRING)) AS unique_session_id,
+
+      # labels
+      will_buy_on_return_visit,
+
+      MAX(CAST(h.eCommerceAction.action_type AS INT64)) AS latest_ecommerce_progress,
+
+      # behavior on the site
+      IFNULL(totals.bounces, 0) AS bounces,
+      IFNULL(totals.timeOnSite, 0) AS time_on_site,
+      totals.pageviews,
+
+      # where the visitor came from
+      trafficSource.source,
+      trafficSource.medium,
+      channelGrouping,
+
+      # mobile or desktop
+      device.deviceCategory,
+
+      # geographic
+      IFNULL(geoNetwork.country, "") AS country
+
+  FROM `data-to-insights.ecommerce.web_analytics`,
+     UNNEST(hits) AS h
+
+    JOIN all_visitor_stats USING(fullvisitorid)
+
+  WHERE 1=1
+    # only predict for new visits
+    AND totals.newVisits = 1
+    AND date BETWEEN '20160801' AND '20170430' # train 9 months
+
+  GROUP BY
+  unique_session_id,
+  will_buy_on_return_visit,
+  bounces,
+  time_on_site,
+  totals.pageviews,
+  trafficSource.source,
+  trafficSource.medium,
+  channelGrouping,
+  device.deviceCategory,
+  country
+);
+```
+
+```sql
+#standardSQL
+SELECT
+  roc_auc,
+  CASE
+    WHEN roc_auc > .9 THEN 'good'
+    WHEN roc_auc > .8 THEN 'fair'
+    WHEN roc_auc > .7 THEN 'not great'
+  ELSE 'poor' END AS model_quality
+FROM
+  ML.EVALUATE(MODEL ecommerce.classification_model_2,  (
+
+WITH all_visitor_stats AS (
+SELECT
+  fullvisitorid,
+  IF(COUNTIF(totals.transactions > 0 AND totals.newVisits IS NULL) > 0, 1, 0) AS will_buy_on_return_visit
+  FROM `data-to-insights.ecommerce.web_analytics`
+  GROUP BY fullvisitorid
+)
+
+# add in new features
+SELECT * EXCEPT(unique_session_id) FROM (
+
+  SELECT
+      CONCAT(fullvisitorid, CAST(visitId AS STRING)) AS unique_session_id,
+
+      # labels
+      will_buy_on_return_visit,
+
+      MAX(CAST(h.eCommerceAction.action_type AS INT64)) AS latest_ecommerce_progress,
+
+      # behavior on the site
+      IFNULL(totals.bounces, 0) AS bounces,
+      IFNULL(totals.timeOnSite, 0) AS time_on_site,
+      totals.pageviews,
+
+      # where the visitor came from
+      trafficSource.source,
+      trafficSource.medium,
+      channelGrouping,
+
+      # mobile or desktop
+      device.deviceCategory,
+
+      # geographic
+      IFNULL(geoNetwork.country, "") AS country
+
+  FROM `data-to-insights.ecommerce.web_analytics`,
+     UNNEST(hits) AS h
+
+    JOIN all_visitor_stats USING(fullvisitorid)
+
+  WHERE 1=1
+    # only predict for new visits
+    AND totals.newVisits = 1
+    AND date BETWEEN '20170501' AND '20170630' # eval 2 months
+
+  GROUP BY
+  unique_session_id,
+  will_buy_on_return_visit,
+  bounces,
+  time_on_site,
+  totals.pageviews,
+  trafficSource.source,
+  trafficSource.medium,
+  channelGrouping,
+  device.deviceCategory,
+  country
+)
+));
+```
+
+```json
+[
+  {
+    "roc_auc": "0.910397",
+    "model_quality": "good"
+  }
+]
+```
+
+```sql
+SELECT
+*
+FROM
+  ml.PREDICT(MODEL `ecommerce.classification_model_2`,
+   (
+
+WITH all_visitor_stats AS (
+SELECT
+  fullvisitorid,
+  IF(COUNTIF(totals.transactions > 0 AND totals.newVisits IS NULL) > 0, 1, 0) AS will_buy_on_return_visit
+  FROM `data-to-insights.ecommerce.web_analytics`
+  GROUP BY fullvisitorid
+)
+
+  SELECT
+      CONCAT(fullvisitorid, '-',CAST(visitId AS STRING)) AS unique_session_id,
+
+      # labels
+      will_buy_on_return_visit,
+
+      MAX(CAST(h.eCommerceAction.action_type AS INT64)) AS latest_ecommerce_progress,
+
+      # behavior on the site
+      IFNULL(totals.bounces, 0) AS bounces,
+      IFNULL(totals.timeOnSite, 0) AS time_on_site,
+      totals.pageviews,
+
+      # where the visitor came from
+      trafficSource.source,
+      trafficSource.medium,
+      channelGrouping,
+
+      # mobile or desktop
+      device.deviceCategory,
+
+      # geographic
+      IFNULL(geoNetwork.country, "") AS country
+
+  FROM `data-to-insights.ecommerce.web_analytics`,
+     UNNEST(hits) AS h
+
+    JOIN all_visitor_stats USING(fullvisitorid)
+
+  WHERE
+    # only predict for new visits
+    totals.newVisits = 1
+    AND date BETWEEN '20170701' AND '20170801' # test 1 month
+
+  GROUP BY
+  unique_session_id,
+  will_buy_on_return_visit,
+  bounces,
+  time_on_site,
+  totals.pageviews,
+  trafficSource.source,
+  trafficSource.medium,
+  channelGrouping,
+  device.deviceCategory,
+  country
+)
+
+)
+
+ORDER BY
+  predicted_will_buy_on_return_visit DESC;
+```
+
+```json
+[
+  {
+    "predicted_will_buy_on_return_visit": "1",
+    "predicted_will_buy_on_return_visit_probs": [
+      {
+        "label": "1",
+        "prob": "0.5226488220858005"
+      },
+      {
+        "label": "0",
+        "prob": "0.47735117791419945"
+      }
+    ],
+    "unique_session_id": "7334489755042666687-1499350997",
+    "will_buy_on_return_visit": "0",
+    "latest_ecommerce_progress": "6",
+    "bounces": "0",
+    "time_on_site": "599",
+    "pageviews": "11",
+    "source": "gdeals.googleplex.com",
+    "medium": "referral",
+    "channelGrouping": "Referral",
+    "deviceCategory": "desktop",
+    "country": "United States"
+  }
+]
+```
+
+## Module Review
+
+### Which of the below are the core services that make up BigQuery? (choose the correct 2)
+
+* __Query service__
+* __Storage service__
+* Data Optimization service
+* Machine Learning service
+
+### You want to know how many rows are in the BigQuery Public Dataset on San Francisco Bike Shares. What could you do?
+
+
+* Run the below query:
+```sql
+SELECT
+
+ SUM(*) AS total_trips
+
+FROM
+
+ `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+```
+
+* __Run the below query:__
+
+```sql
+SELECT
+
+ COUNT(*) AS total_trips
+
+FROM
+
+ `bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+```
+
+* __In the BigQuery Web UI, find the table and click the details tab and view the rows.__
+
+### True or False: You can query a Google Spreadsheet directly from BigQuery without loading it in first.
+
+* __True__
+* False
+
+### You have a taxi service data schema that has three columns:
+
+- ride_id
+- ride_timestamp
+- ride_status
+  You want to use BigQuery for reporting but you don't want to split your table into multiple sub-tables. What native features of BigQuery data types should you explore? (check all that apply)
+
+
+* Consider renaming the ride_id column to 'label' so you can use it in a BigQuery ML model to predict the ride_id of the next ride.
+
+
+* __Consider adding lat / long geographic data points as new columns and using GIS Functions to quickly plot the distances your fleet has travelled.__
+
+
+* __Consider making ride_timestamp an ARRAY of timestamp values so each ride_id row in your table could still be unique and easy to report off of.__
+
+### Complete the following: In ML, a row of data is called a(n) ________ and a column of data is called a(n) _______. We mark one or more columns as ________ which we know for historical data and are trying to predict for future data.
+
+
+* labels
+* instance or observation
+* labels
+
+* instance or observation
+* labels
+* feature
+
+* __instance or observation__
+* __feature__
+* __labels__

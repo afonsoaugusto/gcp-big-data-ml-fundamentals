@@ -1,0 +1,71 @@
+Now that you're familiar with
+the key phases of your ML project, it's time to walk you through some of my
+favorite advanced features of BigQuery ML. Recall that you can create
+a model with just CREATE MODEL. If you do want to override an existing
+model, you can do CREATE OR REPLACE MODEL. Models, again, take options which
+you can specify if you want. The most important and
+the only required one is that model type. Linear regression for forecasting,
+logistic regression for classification, with many
+more types coming soon. I'll add a link in the resources, where you can
+view all of the available model options. You can set things like the model learning
+rate, for how fast it should learn and even hyperparameters for things like
+regularization, to prevent overfitting. You can inspect the importance the model
+placed on each feature by looking at the weights it learned. You do this by using the ML.WEIGHTS
+in filtering on a given input column. In the output, each feature column
+will have a weight from -1 to 1. The closer the number is to -1 or
+1 means the more useful that field is in the model size to predicting
+the value for that label. It's by far one of my
+favorite things to do. To evaluate the models performance,
+next you could just run simply ML.EVALUATE against a trained model. You'll get different performance metrics
+as we covered depending upon the type of model that you choose. Also you can look at the model's
+performance in the UI just by clicking on the model object and your dataset and taking a look
+at all that available metadata. I do that pretty often because
+I'm pretty lazy in BigQuery. Making predictions is as simple as
+calling ML.PREDICT on a trained model and passing through the dataset
+that you want to predict on. Now, let's do one final big review and
+what I'll call the "cheatsheet." If you're going to print something out,
+it's going to be this page. First, in BigQuery ML. You need to have a field in your
+training dataset titled label. Or, you need to specify which field or fields are your labels by using the input_
+label_cols in your model options. Second, your model features
+are simply the data columns that are part of your SELECT statement
+after your CREATE MODEL statement. After a model is trained, you can use
+ML.FEATURE_INFO to get statistics and metrics about that column for
+additional analysis. Next is the model object itself. You train many different models, which
+will all be based on objects stored inside your BigQuery dataset,
+much like your data tables and views. Try clicking on a model object and
+you can view information about when it was last updated or
+how many training runs it completed. Creating a new model is as
+easy writing CREATE MODEL, choosing that model type, and
+passing in a training dataset. And again, if you're predicting in
+a numeric field, like sales for next year, consider looking at linear regression for
+forecasting. If it's a discrete class like high,
+medium, or low, spam or not spam, consider using logistic regression for
+classification. While the model's running,
+and even after it's complete, you could view training
+progress with ML.TRAINING_INFO. As we mentioned previously, you can see what the model learned
+about the importance of each feature as it relates to the label
+that you're predicting. That's my favorite part. Those are what's called
+you model's weight. You can see how well the model did
+against this evaluation dataset by using ML.EVALUATE. Lastly, it's as simple as writing
+ML.PREDICT in referencing your trained model, and then your prediction
+dataset to return back predictions. An important note here is that when
+using ML.PREDICT in passing in a new dataset with an unknown label that
+you can now add other columns that you didn't want to train on initially. The model is not being retrained
+naturally during prediction. Note that if you do happen to remove or rename columns from your prediction
+dataset, that the model is expecting and it saw in training,
+you'll be given an error. So the four major steps look like this. Write a SQL query to extract
+training data from BigQuery. Create a model specifying that type,
+evaluate the model and verify that it meets the requirements. And then predict on that model using
+data that's extracted from BigQuery. If you are explaining BigQuery ML
+as a whole to others, I often just list these main points. So as a broad recap, BigQuery ML allows
+you to, write machine learning models with SQL, experiment and iterate right where
+your data lives, inside of BigQuery. Currently, build classification,
+both binary and multi-class and forecasting models,
+with more model types coming soon. And if you know machine learning already,
+you can really get into the details of your model
+options and weights very easily. Common adjustments that you can make above
+and beyond what BigQuery ML defaults to everyone include things like the learning
+rate, regularization, the training evaluation dataset split, predefined
+weights for classes, and much, much more. Check out the BigQuery ML documentation
+link and bookmark it as a reference, especially as new features
+continue to be being added.
