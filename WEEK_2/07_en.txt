@@ -1,0 +1,131 @@
+Now, let's take a look
+at how you can visualize your insights on
+top of a dashboard. So earlier we took a look at the bikeshare_trips data
+inside of BigQuery. One of the things that I want
+to highlight before we jump into the dashboard building, is when you click on
+a dataset inside of BigQuery, there's a native integration
+with Data Studio. Actually you know
+on the Data Studio you can create a data source, but did you know
+inside of BigQuery, you can actually click on
+the table under Export, there's this new option
+called Exploring Data Studio, and this is just the raw table being passed in as a data source. It's an in-between this is
+called the explorer view, and it's a great way
+for exploration. Immediately, intelligently
+Data Studio says, "Hey there's some
+interesting fields that you might want to visualize like the originating station name in the total amount
+of trips there." So you can see
+the Caltrain station is just dominating it
+for Townsend and Fourth that's one of
+the last stops in SF. 72 thousand trips, and if you said I
+didn't want a table, I want to see a bar chart
+maybe sorted, and you can see
+the clear dominance of the Caltrain station there, and maybe you're wondering
+hey has always been the case? Instead of doing a filter
+on the "where" clause, you can actually just
+create a filter here. Start_date, let's see
+what our options are, I don't want to
+manually pick one, so I'm going to click
+on the auto date range, Last year Apply, and you
+can see without any SQL, this is a very fast UI-based way
+of exploring your data, hovering over, you can see the Ferry building - there
+you go - 9,000 records but 10,000 rides for
+just the year 2018. Great. That's just an easy way
+that you can take a look at exploring common things
+right where your data lives. But if you're looking to build
+a fully-fledged dashboard, you can save that
+and essentially it promotes this one visual view, and what that's going to do is if you went over to Data Studio, that would then promote it as
+a dashboard that you have. So you have data sources and
+then you have the reports. What I'm going to show
+you as a prebuilt report that everyone has
+for Acme marketing, just to highlight some
+of the key things that you can do inside
+of Data Studio, and we'll use this template, we'll agree to the terms
+and conditions, we'll agree to helping
+Data Studio get better, and use the template we're going to make
+a copy of this report, we're going to authenticate and one of my favorite outages
+here at Google, is "good artists copy
+great artists steal," and that's exactly what I tend to do with when I find
+a nice visual dashboard. So it's pretty trivial. Obviously, you
+don't get access to the underlying data
+source unless it's a public one like the ones
+that we're doing now, but you just get
+a copy of a dashboard. So someone's done something
+amazing with like geospatial
+visualization or these cool little up-down arrows based on the trend
+that you see here, and you want to know
+how you set that up. You can essentially just make a copy of
+that dashboard then edit at your leisure
+without worrying about breaking
+their production dashboard. So just a few things I wanted to highlight in here that
+you saw a little bit earlier in the lecture:
+The first thing is you always want to be
+cognizant of what the viewer is going to see. So I'm constantly toggling
+back between the view, looking at my dashboard, seeing the insights, in
+this particular case, is just Google Analytics
+visualized on a dashboard is in
+most of our pages are coming from
+organic search for this just example marketing
+website and then referrals. So you want to be conscious of what the environment is going to look like for the for the user, whatever your target audience is, and then you can take
+a look at adding things like compacting the numbers, so if you just wanted to show instead of 385,000
+that is way too much, you could actually say the
+1,000 or even like down to the millions and that
+thing that's thing as well. So depending upon your users, you may want to aggregate, you're not showing them
+too much of granularity. Filters are great too because
+what you can do is you can adjust naturally
+any of this style, but you can also specify a
+default date range. So if you want to zoom
+in on say you have a report that runs every week, you can set up it actually have a scheduled email to deliver
+that as a PDF for folks. But if you want when people arrive at
+the report just to have the last weeks of data and don't want to have them actually mess around with the filtering, you can do that by setting
+up the date range, so it's going to auto date range. So you could say let's say just last week and we're going to say start Sunday or
+something like that, and then automatically apply it. I don't know how recent
+this data source goes. Oh wow, it actually does it until today and
+that's really cool. You can see this data
+that I think it's live connected to
+a Google Analytics account. So you can see the session
+trends for last week, and then announces
+defaulted from this view. So every time people
+go here they'll have the blinders on or the restriction of just
+looking at last week's, and you could adjust it to
+last month's whatever you want. So what I really like to do honestly is just create
+all the visuals first, you can mess around with different chart
+types you want. So if you didn't want
+to have a time series, you could have the sparkline, you have many different options, and you can just click and
+it'll change that over time. I think the team that actually created this dashboard
+really did good job, so I'm not going
+to mess around too much with what was here, but you can quickly
+change between those, you can add collaborators and share your report with folks, give them viewer permissions,
+editor permissions. You can add a nice
+different bars for just static HTML or
+regular rich text content, and honestly the sky's the limit. What I would advise you
+to do is abide by what I like to call
+the data to ink ratio, and you see that even though we can dump a lot more metrics on this page like fill up the whitespace here or
+maybe at the top, you don't want to
+overwhelm your visitors. That's why a lot of
+the best reports that I see and that I recommend, start with high level KPIs or
+key performance indicators, obviously depending
+upon your use case, and then break down to
+give you the title. It's imperative that you
+have a title and you're labeling your axes
+and your labels, and just draw
+people's attention slowly. So maybe you start at
+the high level of detail, and you're looking for the trends which has a nice use
+of color here, and then you scroll down and
+you get a little bit more of the detail as you
+scroll down the report. But that said, there's a ton of templates that exist out
+there for dashboards. You probably have experienced building dashboards and
+other different tools. Take a look at Data Studio, it's very easy to connect to other different data sources
+and you can create multiple different pages
+of your report if you want a different
+level of granularity depending upon the user
+that's coming into there. But the best way to get
+experience with Data Studio is honestly just
+open up a dashboard, start creating new charts
+and see where it takes you, and the good news mean
+normal things work seriously. So you could delete
+something and you want to undo or you want to redo, it's a very friendly platform, it's hard hard to break
+this type of thing. But that said, you need to have a good dataset to bring
+in to visualize first. So you'll be spending
+a lot of time in BigQuery, creating those views, creating those tables that you actually want to report off of, and then the fun really
+begins when you get to visualize all that
+together. All right.

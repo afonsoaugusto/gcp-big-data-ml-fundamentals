@@ -1,0 +1,97 @@
+Let's now discuss one of the first pieces in
+the pipeline puzzle, which is handling
+large volumes of streaming data that won't be coming in from a single
+structured database. Instead, those event messages
+could be streaming in from a thousand or a million
+different events, all happening asynchronously. A common use case where you
+see this pattern occur is with IoT or Internet of
+Things applications. IoT devices could
+be the sensors on Go Jacks drivers motorcycles
+that you saw earlier, that send out
+their location data every 30 seconds for
+every single driver, or they could be temperature
+sensors placed throughout a data center to optimize and measure heating
+and cooling costs. Whatever the use case is, we have to tackle
+these four primary components. Streaming data from
+various devices or processes that may
+not even talk to each other and even they could send bad data or data that's
+delayed, it's number one. Number two, we never way
+of not only knowing and collecting these
+streaming messages in some sort of buffer, but also allow other services to subscribe to new messages
+that we're publishing out. Naturally, the service
+needs to handle an arbitrarily high
+amount of data so we don't lose any
+messages coming in, and it has to be reliable. We need all the messages and also a way to remove
+any duplicates if found. One tool to handle distributed message-oriented architectures
+like what we've been talking about at a scalable way
+is Cloud Pub/Sub. The name is easy to
+remember because it's the publisher subscriber model, or another way of
+thinking about it as Cloud Pub/Sub publishes
+messages to subscribers. At its core, Pub/Sub is a distributed messaging
+service that can receive messages from a variety
+of different streams, upstream data systems
+like gaming events, IoT devices, applications
+streams, and more. It ensures at least once
+delivery of messages and passes them to subscribing applications and
+no provisioning is required. Where there's a ton of
+messages or none at all, Pub/Sub will scale
+to meet that demand. Also, the APIs are open, and the service is
+global by default and offers end-to-end encryption
+for those messages. Here's what an end-to-end
+architecture could look like. Upstream data starts in from the left and comes into those devices from
+all around the globe. It is then ingested into Cloud Pub/Sub as a first point of contact with our system. Cloud Pub/Sub reads, stores, and then publishes out any subscribers of
+this particular topic. We'll talk about topics soon that these new messages are available. Cloud Dataflow as a subscriber to this pub subtopic in
+particular can then say, "Hey, you got messages?
+Let me take them." It'll ingest and transform those messages in
+an inelastic streaming pipeline. You can output those messages
+wherever you want. If you're doing
+analytics one common data sync is Google BigQuery. Lastly, you can connect a data visualization tool
+like Tableau, Looker, or Data Studio to
+visualize and monitor the results of your
+streaming data pipeline. Next, we'll talk more about
+the architecture of Pub/Sub. A central piece of
+Pub/Sub is the topic. You can think of a topic
+like a radio antenna. Whether your radio is blasting
+music or it's turned off, the antenna itself
+is always there. If the music is being broadcast at a frequency that's
+no one's listening to, the streaming music still exists. Similarly, a publisher
+can send data to a topic that has
+no subscriber to receive it. Or the inverse, a subscriber
+could be waiting to hear data from a topic that isn't getting any data sent into it. That's kind of like
+listening to all that static and a bad radio frequency. Or you can have
+a fully operational pipeline where the publisher
+is sending data to a topic that an
+application that has subscribed to and
+it's pulling from. To recap, there can be zero, one, or many publishers and zero, one, or many many subscribers relating to any
+given Pub/Sub topic, and they're completely
+decoupled from each other. So they're free to break without affecting
+their counterparts. It's best described
+than in example. Say you've got an HR or
+Human Resources topic, a new person joins your company, and then this
+notification should allow other applications
+they care about a new user joining
+your company to subscribe and then get
+that message when it happens. What applications could tell you that a new person
+just joined? Well, you might have
+two different types of workers; full-time employees
+or contractors. Both sources could have
+no knowledge of the other, but still are equally
+pushing their events saying this person just joined
+into the Pub/Sub HR Topic. What other areas of your business do you
+think would like to know as soon as a new person
+joins your organization? Once Pub/Sub receives
+the message, downstream applications like the company's
+directory service, the facilities system, account provisioning, and
+badge activation systems, can all listen in and process their own next steps
+independent of one another. Pub/Sub is that good
+solution to buffering changes from those lightly
+coupled architectures like this one here with many
+different upstream sources and potentially many different
+downstream sinks or subscribers. It supports many different
+inputs and outputs, and you can even publish
+from one Pub/Sub event them from that topic to yet another Pub/Sub subtopic
+should you wish. For our application,
+we want to get these messages reliably
+into our data warehouse. So now we're going to need
+a pipeline that can match Pub/Sub scale and it has
+the elasticity to do it.

@@ -1,0 +1,42 @@
+Now that you've seen
+the pipeline design and code, it's time to talk about implementing it at
+scale for your production data pipelines. When shopping around for
+execution engines for your pipeline code,
+consider these questions: How much maintenance overhead is involved? Is the infrastructure itself reliable? How is scaling handled? How can I monitor an alert
+on things in my pipeline? And am I locked in to a vendor? With Cloud Dataflow a lot of the
+complexity of infrastructure's setup and maintenance is handled automatically for
+you. It's built on top of
+Google's infrastructure and it autoscales to meet the demands
+of your data pipelines. It's also tightly coupled with
+other Google Cloud Platform projects like Stackdriver. So you can set up priority alerts and
+notifications to keep a watchful eye on your pipeline and the quality of
+data that's coming in and out. You can replace all the various data
+handling tools with just Dataflow. Many Hadoop workloads can be done easily
+and more maintainably with Dataflow. Plus, Dataflow is serverless and
+designed to be NoOps. What do we mean by serverless? It means that Google will manage
+all the infrastructure tasks for you, like resource provisioning, performance tuning, as well as ensuring
+that your pipeline is reliable. That means you can spend more of your time
+analyzing the insights from your data sets coming out of the pipeline and less time
+provisioning resources to ensuring that your pipeline will actually make it
+through its next couple of cycles. It's designed that at its
+core to be low maintenance. So what does Cloud Dataflow
+do with the job? Once it receives it,
+the Cloud Dataflow service optimizes the execution graph of your
+model to remove inefficiencies. It schedules out work and the distributed
+fashion to workers and scales as needed. It will auto-heal in the event
+of faults with those workers. It will re-balance automatically to
+best utilize the underlying workers. And it'll connect to a variety of
+data syncs to produce a result. BigQuery is just one of the many
+syncs that you can output data to, as you'll practice inside of your lab. What you won't see, by design,
+is all the compute and storage resources that
+Cloud Dataflow is managing for you elastically to fit the demand
+of your streaming data pipeline. That's fully managed. And even if you're a seasoned Java or
+Python developer, it's still a good idea to start from
+many of the existing Dataflow templates that cover common use cases across
+Google Cloud platform products. See whether or
+not there is an existing template for you to work from. For IoT use cases Pub Sub through Dataflow into BigQuery
+already exists and it's a popular choice. Here's a quick recap of Cloud Dataflow. It's designed to be easy to deploy
+your pipeline and have it just run. It's serverless and fully managed. Same code can both batch and
+streaming at scale. It's built on Apache Beam's
+open source programming model. And it can autoscale, auto-heal, and re-balance to millions
+of queries per second.

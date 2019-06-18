@@ -1,0 +1,58 @@
+Now we've captured
+all of our messages from a variety of different
+streaming input sources. We need a way to pipe in all that data into our data
+warehouse for analysis. Here's a quick mental framework for the two problems
+that we needed to solve as a data engineer,
+building our pipeline. Looks like an architect,
+drawing a blueprint and then eventually building
+the house or building. We have to solve for number one, the design of the actual
+pipeline in code. Number two, the actual
+implementation in serving of that pipeline
+at scale in production. Here are some of
+the common questions to ask in each of these phases. For a pipeline design, is the code we're going
+to write compatible with both batch and
+streaming data? Or would we need to
+do any refactoring? Does the pipeline code
+SDK or using have all the transformations need slight aggregations and
+windowing functionality, and does it have
+the ability to handle late data coming
+into the pipeline? Lastly, for design are there any existing templates or solutions that we can leverage
+to quickly get us started? One popular open
+source solution that we talked a bit about
+earlier in the course, is building pipelines
+with Apache Beam. It works with both batch
+and streaming data, and has an ever-expanding list of transformations and functions, that are committed and added to its open source repository. Best of all for this class, is that you'll be starting from an existing template
+for your pipeline code. So what exactly is Apache Beam, and what does the pipeline
+written using the SDK look like? Apache Beam is a portable data processing
+programming model. It's open source, and it can be ran in a highly
+distributed fashion. It's unified and that
+is single model, meaning your pipeline code can work for both batch
+and streaming data. You're not locked into a vendor because the code is
+portable and can work on multiple execution
+environments like Cloud Dataflow or Apache
+Spark among others. It's extensible and open source. You can browse and write
+your own connectors, and build transformation
+libraries too if you wanted. Apache Beam pipelines are
+written in Java, Python or Go. The SDK provides a host
+of libraries for transformations and
+existing data connectors to sources and sinks. Apache Beam creates a model
+representation of your code, which is portable
+across many runners. Runners pass off your model
+to an execution environment, which you could run in
+many different possible engines. Cloud Dataflow is one of the popular choices for running
+Apache Beam as an engine. Here's what an actual pipeline looks like using
+the Apache Beam SDK, running on Cloud Dataflow
+as an engine. Each step in the pipeline,
+there's a filter, a group, transform, compare, join and so on, and at the critical point is that transformations can
+be done in parallel, which is how you get
+that truly elastic pipeline. In the code snippet here, c.element, gets the input, and then c.output, sends the output to the next step
+of the pipeline. You can get input from many different and even
+multiple sources concurrently, then you can write output
+to many different sinks, and the pipeline code
+remains the same. You can put this code
+inside of a circle, deploy it to App Engine
+and schedule a Cron Task Que in App Engine to execute the pipeline
+code periodically. But what if you
+didn't want to manage the infrastructure
+running the pipeline? We'll see now how next, you can implement
+your pipeline code at scale with low maintenance.

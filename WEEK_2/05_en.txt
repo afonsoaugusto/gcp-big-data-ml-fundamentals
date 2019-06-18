@@ -1,0 +1,58 @@
+All data sitting in BigQuery, is great if you're
+an analyst who's exploring for insights with SQL. But it's often not enough
+for your stakeholders. They want to see and
+interact with your data in a more intuitive
+and visual way. Data visualization is
+a powerful tool to let you explore your data also before
+presenting your results. Speaking of exploration,
+a new and popular way to explore your datasets is
+available right within BigQuery. After you execute a query, you could explore in Data Studio
+to immediately start creating visuals or explore as part of building a dashboard. Now, here's an example of
+an actual Data Studio report. They don't have to
+understand the numbers. But just on the surface, Now what do you think
+this report is trying to do? In this case, it was
+the ad performance for the 2016 Olympic games that
+were broadcasted on NBC. The role of your report
+should be to highlight the key insights that
+your audience cares about. Don't show them everything, focus and filter their attention
+to just what those data points or those insights that they need
+to be seeing right then. Telling a good story with your data on your
+dashboard is critical because your users are
+likely not going to care about that amazing pipeline
+you just built, if the output of the dashboard
+is ugly and hard to use. Take it from experience.
+Data Studio comes with pre-built templates
+like this one that monitors your GCP Billing
+in a dashboard. You can even connect this one to your own GCP account to monitor
+your own spending and do some fun analysis like track incoming BigQuery jobs and the amount of data that
+those queries are processing. Here is a quick walk-through
+of the Data Studio UI. Now keep in mind that the team is continuously updating
+the product, so refer to their
+documentation as a link for those best examples
+in additional practices. The Data Studio homepage shows the dashboards and
+the data sources that you have access to. It's an important distinction
+between the two. Connected data sources
+can feed into dashboards but just because somebody has access
+to your dashboard, doesn't mean they automatically
+are granted permission to view the underlying data
+that's presented, because that could be
+controlled in BigQuery or elsewhere in your GCP project. Anyway, there are two ways to create a new report from scratch: from the templates panel
+up at the top, or from the button in
+the lower right-hand corner. The first thing you
+need to do is tell Data Studio where your
+data is coming from. That again is known
+as the data source. A Data Studio report
+can have any number of data sources but we'll
+just start with one. The data source picker shows all the data sources
+that you have access to. Note that you can
+have any or all of these data sources in
+a single Data Studio report. Since Data Studio reports
+and datasets can be shared, you should be aware
+of the ramifications of adding a new data source. When you add a data
+source to a report, other people who can
+view the report, can potentially see
+all the data in that data source if you share
+that data source with them. Anyone who can edit
+the report can also use all the fields from any added data sources to
+create new charts with them. You can click "Add to Report" to connect the data source and then you're ready to
+start visualizing.

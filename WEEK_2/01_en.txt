@@ -1,0 +1,51 @@
+So far in our course, the data that we've
+been looking at has been loaded in batch form, coming from pre-existing
+structured datasets like Cloud SQL or BigQuery. But what about if the data
+is on thousands of sensors, streaming in data
+points worldwide? What if they send
+new messages every minute or even faster? How can you harness
+such upstream data sources for your analysis? Welcome to the module on
+real-time IoT dashboards. We'll highlight and solve the challenges of
+streaming data processing. We'll first look at
+the challenges that give today's data engineers headaches, from trying to set up and
+manage their own pipelines. Then we'll examine how
+we can capture all of these streaming messages and wrangle them into a reliable, global, and scalable
+way, into our pipeline. After we've captured
+those streaming messages, we'll show you how you can build serverless data pipelines for streaming that data using
+Google Cloud Platform Tools. You may be asking, serverless? How can I design and control the pipeline for
+scale if I need to? We'll cover all of that
+in our sections on Apache Beam and Cloud Dataflow, which are popular ways to design and implement these kinds
+of pipelines respectively. Last, once we've captured, processed and then
+stored the data, we'll then see how
+we can visualize our insights with
+reporting dashboards. Building scalable and
+reliable pipelines is a core responsibility
+for data engineers. In modern organizations,
+data could come in from all
+different data sources. Imagine a gaming
+company that tracks high scores for users
+from their events, and it needs to log
+player progress towards in-game objectives or hundreds of
+distributed IoT sensors reporting weather readings
+from all around the globe. What about point-
+of-sale data from a thousand different storefronts, how do we alert
+our downstream systems of new orders in an organized way, and with no duplicates? Now, let's amplify the magnitude of the challenge to handle
+not only a variety of input sources but that of
+a variable volume of data that'll start at gigabytes and
+scale up to petabytes or more. Will our pipeline code and
+infrastructure scale with it? Or will our pipeline grind
+to a halt or crash? We need to do it at
+all near real time, as soon as that data
+touches our system. Oh, and by the way, we need a way to handle
+if our data arrives late, it has bad data in the message, or if it needs to be transformed mid-flight before we can stream it into
+our data warehouse. Are you pulling
+your hair out yet? I actually don't have
+that much hair left to pull out. Well, as you can start to see, there are significant
+challenges at every turn for
+the pipeline developer. We'll unpack each of
+these challenges, and hopefully, by
+the end of this module, you'll not only have
+the peace of mind knowing that there are
+solutions out there, but also the real-world
+experience building a streaming data pipeline
+on IoT data for your lab.

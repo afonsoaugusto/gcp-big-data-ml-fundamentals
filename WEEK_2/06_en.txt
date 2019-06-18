@@ -1,0 +1,35 @@
+Now let's look at some tips and tricks for chart creation. The mantra in Data Studio is click and draw,
+not drag-and-drop. So you select the chart type. Then you draw a box
+where you want it to go. Data Studio automatically adds some appropriate fields that it thinks could be
+useful to your chart. The chart property's panel
+on the right, is where you can
+configure your chart. You can give your report
+a name just by clicking on the title
+and editing it. One thing to watch out for, since Data Studio is
+based on Google Drive, you can have
+duplicative filenames. Click View to see what your
+users will ultimately see, and here's our report. Notice it looks very similar
+to when you were editing it. But as a viewer, you can't modify the report. Note that you can mouse over any of the charts and
+graphs on the report. This is live data, it's not just a static image. So this report may
+not look like much, but with just a few mouse clicks, you can connect to
+a data source like Google Analytics and create a chart graphing
+session data over time. A few more key things to know, Dimension chips are green. Dimensions are things like categories or buckets
+of information. Dimension values could
+be things like names, descriptions, or other
+characteristics of a category. Metric chips are blue. Metrics measure dimension values. Metrics represent measurements or aggregations such as a sum, x plus y, a count, how many of x, or even
+a ratio, x over y. You can even create
+simple metrics through calculated fields, like field one plus field two. This would be much more complex, using over 50 calculated
+field functions available in Data Studio. A calculated field can
+also be a dimension. For example, you could use a regular expression
+to extract part of a landing page URL or a keyword into a new dimension
+to make it easier to read. Lastly, you can share and collaborate your dashboards
+with your team. Keep in mind that when
+you share a report, if you're connected to
+an underlying data source like a BigQuery data set, Data Studio does not
+automatically grant permissions to
+viewers and that data source if the viewer
+doesn't already have them and this is for
+data security reasons. After you share your report, users can interact
+with filters and sort, and then you can collect feedback on the usage
+of your report through Data Studio's
+native integration with Google Analytics.
