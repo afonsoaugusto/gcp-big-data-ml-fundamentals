@@ -1,0 +1,65 @@
+Hi, I'm Carolyn Ujcic. I lead a team of machine learning engineers who have successfully implemented many machine
+learning projects across various industries. So far in this course, you've been applying
+machine learning to your structured datasets
+with custom models. It's time to widen our aperture and look at
+unstructured datasets, like images and
+also other approaches to doing ML that don't involve
+custom model building. Here's our agenda. We'll
+first see how ML on unstructured datasets is
+driving value for businesses. Then, we'll look at the intuition and models
+behind unstructured data. After that, is a critical topic on choosing
+the right ML approach. Whether to build
+a model from scratch, or use pre-existing
+building blocks. Lastly, we'll do a demo
+to classify text using three different approaches
+and compare the results. Here are just a few
+customer examples of companies who have used the ML tools on Google Cloud
+Platform on their datasets. The left to right ordering
+is reflective of more low-level programming to more abstraction and UI based. Aucnet built their
+own custom model to classify images of car parts
+and estimate price. Ocado used parsed results from the Natural Language API to route customer emails to
+the correct responders. Giphy use the out-of-
+the box vision API to find the text and memes using
+optical character recognition. It then can reject inappropriate uploads based
+on sentiment or keywords. Uniqlo designed to
+shopping chat bot using the dialogue flow UI. Dialogue flow is a Google owned
+company which specializes in building ML based interfaces like intelligent chatbots. Let's look at some other use
+cases for ML and business. You might be Airbus and
+use machine-learning to differentiate between
+Clouds and snow cover. If you're stumped like I am, the Clouds are in
+the upper right part of the right image
+highlighted in red. You might be an economic
+forecasts firm looking to track the global fleet of container ships via
+satellite imagery. Knowing the amount of
+cargo being carried, might help improve
+your economic forecast by days or months ahead of
+the official numbers. Medical images are
+ripe for innovation. For example, you could diagnose
+medical conditions like diabetic retinopathy earlier when it's easier to treat
+and prevent blindness. The key takeaway is
+that ML can automate tasks that may save
+or assist a human team. Recently, the latest
+models are even outperforming humans
+in some domains. Also image classification as a field is more than just
+binary classification tools. Later in this course,
+you will experiment with the pre-built Vision API model
+which allows you to pass through
+a JSON request and get back a ranked list of associated
+labels for your image. Also if you have more than one
+subject matter in a photo, you can draw bounding boxes and classify pieces of
+an image as well. Modern image classification
+models can even generate captions describing what is going on in the image, like a map of dependencies, like two hockey players
+are fighting over a puck. Here it's important
+to call out that even the best models can and will make mistakes
+in their predictions. Like the road sign captioned as a refrigerator filled with
+lots of food and drinks. As you saw, there were a lot of impressive uses for machine
+learning these days. Like detecting
+objects and images, helping to detect diseases and even enabling cars
+to drive themselves. But AI can also be used
+in more playful ways too. Through a pose estimation model, a Google AI experiment
+called moved mirror, can match your real-time
+movements to hundreds of images of people doing similar poses from
+around the world. Feel free to try it out
+yourself and have some fun. Then tune back into
+this course to learn how image classification
+models extract features like these from images.

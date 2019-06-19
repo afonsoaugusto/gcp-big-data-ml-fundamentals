@@ -31,3 +31,53 @@
 ## Creating charts with Data Studio - 06_en
 
 ## Demo: Data Studio walkthrough - 07_en
+
+## Lab: Create a Streaming Data Pipeline for a Real-Time Dashboard with Cloud Dataflow
+
+*   Connect to a streaming data Topic in Cloud Pub/sub
+*   Ingest streaming data with Cloud Dataflow
+*   Load streaming data into BigQuery
+*   Analyze and visualize the results
+
+```sh
+bq mk taxirides
+```
+
+```sh
+bq mk \
+--time_partitioning_field timestamp \
+--schema ride_id:string,point_idx:integer,latitude:float,longitude:float,\
+timestamp:timestamp,meter_reading:float,meter_increment:float,ride_status:string,\
+passenger_count:integer -t taxirides.realtime
+```
+
+## Module Review
+
+### Relational databases are a good choice when you need:
+
+* Streaming, high-throughput writes
+* Fast queries on terabytes of data
+* Aggregations on unstructured data
+* __Transactional updates on relatively small datasets__
+
+### Cloud SQL and Cloud Dataproc offer familiar tools (MySQL and Hadoop/Pig/Hive/Spark). What is the value-add provided by Google Cloud Platform? (Select all of the correct options)
+
+* It’s the same API, but Google implements it better
+* Google-proprietary extensions and bug fixes to MySQL, Hadoop, and so on
+* Fully-managed versions of the software offer no-ops
+* Running it on Google infrastructure offers reliability and cost savings
+
+## Where is unstructured ML used in business? - 08_en
+
+[movemirror](g.co/movemirror)
+
+## How does ML on unstructured data work? - 09_en
+
+## Comparing approaches to ML - 10_en
+
+[cloud.google/vision](cloud.google/vision)
+[cloud.google/translate](cloud.google/translate)
+[cloud.google/speech](cloud.google/speech)
+[cloud.google/video_inteligence](cloud.google/video_inteligence)
+
+## Using pre-built AI to create a chatbot - 11_en

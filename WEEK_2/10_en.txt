@@ -1,0 +1,46 @@
+We've covered machine learning
+throughout this course, but that was just one approach,
+custom model building. In our first challenge, you may recall you inherited a Spark ML job that your data science team created to predict
+housing rentals. The second challenge
+had you create a forecasting model with
+BigQuery ML from scratch, although you've saved time by coding and running
+it in just SQL. It's now time to zoom back out on approaches to
+machine learning and even look at some ways
+we can apply it without having to
+write code at all. There are three approaches to AI that you should consider. You have already seen and built custom models
+with BigQuery ML, and we have a separate set
+of courses on TensorFlow for
+even deeper model building. A good rule of thumb is
+to consider custom model building only when you
+have a lot of data, like 100,000 plus to
+millions of examples. But what if you don't? Consider using a pre-built AI
+which are models like the Video Intelligence and Cloud Vision APIs
+that you saw before. In addition, if you're
+looking to build a chat bot, start with Dialogflow, which is a full fledged
+application with ML built in. But what about if
+the building blocks don't work well for
+the specificity, you need on your data? That's when you should consider Auto ML as a good candidate. It can even work with
+just a little bit of data like 10-100
+images per label. This lesson covers each of
+these approaches in detail. First step is using pre-built AI building blocks
+for your use case. Pre-built models are
+offered as services. In many cases,
+these building blocks can be used to create
+the application you want without the expense or complexity of creating
+your own models. Cloud-Speech-to-Text
+converts audio to text for data processing, Cloud Natural Language
+API recognizes parts of speech called
+entities and sentiment, Cloud Translation converts text in one language to another, Dialogflow Enterprise
+Edition is used to build chatbots to
+conduct conversations, Cloud Text-to-Speech converts text into high-quality
+voice audio, Cloud Vision API is
+for working with and recognizing content
+in still images, and Cloud Video
+Intelligence API is for recognizing motion
+and action in video. Good machine-learning
+models require lots of high-quality
+training data. As we mentioned before, you should aim for 100,000 plus records to train on
+for custom model. If you don't have
+that kind of data, pre-built models are
+a great place to start. Let's take a look back at one of the most popular ones that I use when I travel overseas,
+the Translation API.

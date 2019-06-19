@@ -1,0 +1,75 @@
+Next, let's discuss
+how you can build an intelligent chatbot on top of an already
+existing solution. Increasingly, customers
+do not want to go to your website and click on a button or even
+send you an email, they want to talk to
+someone interactively. The first solution years
+ago was setting up a call center and manually
+answering each call, but that doesn't scale. So many companies have turned to automation and machine learning to help solve this problem. Gartner estimates
+that in a few years, companies will be
+investing more in creating conversational interfaces
+like chatbots than even on
+mobile app development. Is this chatbot demo just the Speech API paired with a transcription service on top? Nope. What I'm showing here is a high level conversational
+agent tool called Dialogflow, which has ML built into
+its conversations. Dialogflow is a
+platform for building natural and rich
+conversational experiences. It was formerly named api.ai until Google acquired it and rebranded it into Dialogflow. At its core, Dialogflow is a powerful natural language
+understanding engine to process and understand
+natural language input. In other words, it lets
+you easily achieve a conversational
+user experience by handling the natural language
+understanding for you. Dialogflow has seen
+continuous growth in its developer community and is becoming a conversational
+experience standard. Google is an AI company with
+a goal to make AI easy, fast, and useful for
+enterprises and developers. Dialogflow is built on some of the same world-class AI assets and capabilities
+that were originally developed for products
+like Gmail and Search with new ones being
+utilized on an ongoing basis. It incorporates Google's
+ever-growing AI experience including machine
+learning expertise, search capabilities,
+speech recognition, and of course natural
+language understanding. It has built-in
+entity recognition which enables your agent to identify entities and label
+by types such as person, organization, location,
+events, products, and media. Also sentiment analysis
+to give an understanding of the overall sentiment
+expressed in a block of text. Even content classification, allows you to
+classify documents in over 700 predefined categories like common greetings and
+conversational styles. It has multi-language
+support so you can analyze text in
+multiple languages. Dialogflow works by putting
+all of these ML capabilities together which you can then optimize for your own
+training data and use case. Dialogflow then creates
+unique algorithms for each specific
+conversational agent, which continuously learns
+and is trained and retrained as more and more users
+engage with your agent. The three core benefits to using Dialogflow are building conversational
+experiences faster, engaging end users
+more efficiently, and maximizing reach across
+geographies and platforms. Build your agent quickly
+by starting with just a few training phrases or using one of over 40
+pre-built agents. These pre-built agents can be used directly out of the box or imported into your agent to build on and customize
+for your own use case. These include everything
+from food delivery to hotel reservations to
+news and reminders. You can easily import these pre-built agents from
+the Dialogflow console. You can rely on Dialogflow's built-in natural language
+understanding capabilities, model training, and analytics that are already taken
+care of for you. Dialogflow's built-in
+analytics can tell you a lot about your users'
+interactions with your agent. For example, it can show you the breakdown of how often different intents
+are triggered. This shows you how
+your users are spending their time in conversation
+with your agent. This can also help you prune
+any underutilized intents. You can also deploy your agent
+on multiple platforms and utilize single-click integration such as Facebook Messenger, Kik, Twilio, Twitter, Slack, and Cisco Spark
+just to name a few. The Google Assistant
+integration allows you to quickly deploy your agent to any Assistant-enabled platform such as the mobile app
+or Google Home device. The web demo integration
+allows you to test out your chatbot in
+an embedded web page. There are also integrations for other popular apps such
+as Facebook Messenger, Slack, and Twitter which are enabled with
+quick authentication. With all of these features and the natural-language
+understanding good built-in, let's see the kind
+of smart, rich, relevant conversations that
+Dialogflow can bring to life.
