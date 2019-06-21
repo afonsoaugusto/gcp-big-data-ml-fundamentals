@@ -1,0 +1,262 @@
+In this demo, I'm going to solve the same machine
+learning problem, three different ways
+in Google Cloud. So this is a text
+classification problem, one of the harder machine
+learning problems. I'm going to solve them
+using BigQuery ML, using AutoML and using a custom model that
+you write in Keras. This way you get
+an idea about what the development workflow is for all three of these ways
+and we will look at the performance of
+all of these methods. The problem itself is this. Suppose I give you
+the title of an article, let's say I give me a title
+of an article and it said, where is this article from? Is it from the New York Times? Is it from GitHub? Is it from TechCrunch? The question is, are
+you able to tell? Right. So let me for example, let's just go and
+go can you tell. Let's just go to New York Times today and let's say we
+picked up pilots of doomed flight fall or
+Ethiopian Airlines pilots followed Boeing safety
+procedures before crash. The report shows. If I told you
+this title and I said, does this come from TechCrunch or does this
+come from New York Times? I think most of us would guess it comes from
+the New York Times. That's because we see
+these words and say, these kinds of topics tend to be covered more from New York Times
+than in TechCrunch. Well, that's what we want our machine learning
+model to know. Now, how would you write
+a set of rules to do that? That's super hard. But if we had a dataset of past headlines from
+the New York Times, from GitHub, and from TechCrunch, we can train a machine
+learning model to do this, and that's exactly what
+we're going to do. It turns out that when we
+go to Google BigQuery. So we leave that here. Let's go to Google BigQuery. So down here is in the big
+data tools, there's BigQuery. We can go into BigQuery,
+type in our query. So in this case, the data is in a BigQuery dataset called BigQuery public
+data hacker news and all of the stories and we'll
+get the URL and we'll get the title and let's
+get about 10 of them. You see that the title could be things like mobile
+first is dead, considering worthwhile branding
+etc and there are URLs like www.dasboom.com,
+www.covertimes.com etc. So if we look at the URL, we can figure out
+which publication it came from. So what we'll do next
+is that we'll write a slightly more complex query to do regular expression matching on the URL and pick up
+the title and we'll try to find publications that came from the three publications
+that we're interested in. So here is a slightly
+more sophisticated query which basically takes the title, removes all special
+characters from it, keeps only the words
+from the title, and then goes ahead and
+takes the URL and if it says www.nytimes.com
+something something. It just keeps nytimes. So it does that and
+then we basically keep it to be just where the source is one of these three
+things: GitHub, New York Times, or TechCrunch. Then in this case, I'm taking the
+first five words of the title and that's basically
+going to be my dataset. It's going to contain the source and it's going to
+contain the five words. So this is a BigQuery query. It's a SQL query
+that we are running on that dataset of
+hacker news stories. At this point, we get that
+the source is GitHub and the title is geoip module on nodejs null something
+something something, right. So we're keeping
+the first five words. Now, let's go ahead and train a machine learning model that if you give it the first five
+words of the title, it would tell you whether the article comes from GitHub or New York Times
+or TechCrunch. So the whole idea here is that once we know the first five
+words of the title we will be able to tell right which publication
+this article appeared in. So we're training the model
+based on historical data. So we come to
+this query that pulls the data and we need to add
+a little bit of SQL to it, and that little bit
+of SQL is create or replace model,
+advdata.txtclass. Advanced data is
+the name of my dataset. So what I'll go here, I'll do is I'll go into
+this thing and create a dataset. Create a dataset called advdata
+and create the dataset. So into this dataset, I'm going to create
+a model called txtclass. It's going to be
+a logistic regression model. So it's going to
+do classification and the label is a source. Remember, the GitHub and nytimes or TechCrunch and the
+rest of it in this case, the five words, they form
+the features of the model. I go ahead and say run
+and this is going to go ahead and train a model for me. So this took about three minutes. At the end of three minutes, in my advanced data, there is a new machine
+learning model called txtclass that has been created and the txtclass basically
+got trained, and so we basically have information on as it got trained, how much each iteration took, and what the training
+data loss is. Well, this is fine, but what we can also do
+is we can actually have it tell us about the
+evaluation of this model. So let's say, select star from ML evaluate,
+advdata.txtclass. When we do that we learned that the accuracy is about 79 percent. So 79 percent of the time. If you give it
+a title this model is going to correctly predict
+which publication, the article in
+question came from. Let's try it out. So in this case,
+what I'm doing is I'm saying suppose I
+have an article that starts with unlikely
+partnership in house gives which publication
+is it going to come from. Our FitBits fitness tracker is or downloading the Android
+Studio project is, and remember this article from today that I picked up
+about the Ethiopian Airlines. So we can do that too Ethiopian Airlines
+pilots followed and what was the title? Followed Boeing's. Okay. So let's do
+that and hit run. It's now going ahead and
+doing a prediction given the title which is the
+potential source of this data. So it says that an article
+that starts with government shutdown
+leaves workers reeling is most likely
+from the New York Times. Almost 48 percent
+likely New York Times, 26 percent GitHub,
+25 percent TechCrunch. Unlikely partnership in house, also New York Times 50
+percent likely there, 25 percent for the other two. On the other hand,
+FitBits fitness tracker most likely
+from TechCrunch, downloading the Android
+Studio project. It says most likely
+TechCrunch it's wrong. It's actually from GitHub. But you can see that it gives approximately equal
+probability to both TechCrunch and GitHub. How about the article from today? Ethiopian Airlines pilots,
+New York Times. Let's see. Yeah, that's from the
+New York Times again, with a slightly
+larger probability. So that's one way of
+doing machine learning. You basically have your data
+in a data warehouse. You're able to use SQL and train a text classification model that does pretty well,
+79 percent accuracy. The second way on Google
+Cloud Platform is to use AutoML. The idea behind AutoML
+is that you can go down to the Cloud AI platform in a natural language and get started with AutoML. In this case, I'll
+fast-forward a little bit because AutoML takes a few hours. So in this case, essentially what we
+did was that we loaded up a training dataset
+and we pointed it at BigQuery and we said
+load up the data and it loaded up 35,000
+titles from GitHub, 26,000 titles that correspond
+to New York Times, and 30,000 ones set correspond to TechCrunch and you
+see here an example of the titles and
+where they come from. So for example, it says access to iPad apps clipboard etc that comes from
+TechCrunch and so on. So it basically does that
+and then we're able to go in the graphical user
+interface to say go ahead and please
+train a model for me. We can just click train a new model and this takes
+a few hours as we said, and then at the end
+of it we basically get a model with training curves. In this case, we get a
+training curve that has, you can do full evaluation and we will get an accuracy that like a top one that is around the average of these things which is about 82 percent accuracy. So AutoML in this case gives
+us actually 82 and 94, so about 86 percent
+accuracy overall. So it gives us a much higher
+accuracy than BQ ML was. All that we had to do was to
+basically load the data in. It does all of the neural
+architecture search. It does a bunch of
+feature engineering. It goes ahead and creates
+a classification model. Once we have the
+classification model, we will be able to go ahead
+and do a prediction on it and in our case
+a prediction again. So let's go ahead and
+pick a happier title. So in this case, let's
+say, let's pick a title. Well, there are no happy titles. Let's pick this one, 'The Stoic Philosopher of the Lockup'. So let's say that that's
+the title that we get and where is this
+likely to be from? It says 98% likely that this particular
+article comes from The New York Times and as you
+can see it's pretty good. So in AutoML, the basic idea
+is you load your data in, and then you click
+a button to train, and then you click
+a button to evaluate, and then basically you have
+your model all deployed. You can pass in
+a new text thing and it basically goes ahead
+and does a prediction. So that's the second way in which you can do machine
+learning on Google Cloud. Use AutoML, it has a bunch
+of predictive models, built-in models in which
+you can bring your own data set and you can train
+a model on that data set. It basically gives you a very high-quality
+model to start. The third way to do
+this is to write your own model using
+custom models, using Keras. In order to do that, what I will do is that I will go ahead and create Notebook. Notebook is something that
+data scientists tend to use because it allows
+you to mix and match documentation
+along with code. So in this case I'll go ahead
+and create a new Instance. Now we're creating
+a new Instance, and once this Instance
+is created, we'll basically get
+this link that'll become blue and we'll be able to click on it and
+go into a Notebook. So at this point
+the Instance is started. Jupyter is starting. Okay. Now that we
+have the blue link, I'll click on 'Open
+Jupyterlab' and this takes me into
+the Notebook interface on the virtual machine. What I can now do is that
+I can launch a terminal. So let's go and git
+clone the repo, and now that the repository
+is git cloned, it shows up here and we can open up a Notebook that I
+have in the repository. So here's the Notebook. What I will do here is that I'll change the Bucket and the Project to reflect
+the Bucket and Project that I'm working with currently. I can do that by going to Home, and in this case
+that's a project name. I had created a bucket with
+exactly the same name. So I will go ahead and use
+that Bucket and that Project. This is in US.
+Where's the Jupyter? I started the Notebook
+in US west b, so around here make
+that US west1 b, and return. So notice that
+the Notebook contains some text documentation
+that says what's happening. It's a report but
+it's also executable. So you can share a notebook with someone and they
+can run the code. So it's executable, it also serves as the documentation of the exact work that
+the data scientists did. So we've set the project
+and all of these things, we can set that on
+the command line. Let's look at what version
+of TensorFlow we have. In this case I'm
+running TensorFlow 1.13 and Jupyter comes with what are called Jupyter Magics and we're to
+go ahead and run BigQuery. So we can go down
+here, for example, and say what I did earlier
+to URL, the title, and the score, and I can now run the query from the Notebook
+and I can get the URL, and the title, and the score. So it's as simple as that. You put BigQuery in front
+of it and put your SQL in and you get the result
+right there in the Notebook. In this case this is
+a longer query that I had, where I was basically
+extracting out the source from the URL et cetera and we can now go ahead and make sure
+that that part works. We see it now, we have a bunch of different sources and the number
+of articles from each. In this case now, I'm basically getting
+just the GitHub, and The New York Times, and the TechCrunch
+articles. We can do that. Using that, I can
+now go ahead and create my training DataFrame
+and my evaluation DataFrame. The data frame here is
+a Pandas DataFrame. Pandas is a Python package
+for doing data analysis. So in this case I now
+have two data frames, a training df for training and an evaluation
+df for evaluation. They're different
+because I've kept 75% of things for training and
+25% of them for evaluation. So at this point, I have those, we can figure out
+how many training files we have and you can see
+that we have around 2,500 to 27,000 articles for each of the sources
+in the training set. We have about 7,000 of them in the evaluation set
+and we can go ahead and save these to a CSV file
+locally or in Cloud Storage. In this case we're
+storing it locally. So we're doing that
+and we can now go ahead and see here
+the files that we have, right? The first one is the
+one from GitHub, next one, so on. We can find out
+how many lines there are. There are 24,000 lines in
+evaluation, 72,000 in training. So these are the kinds
+of things that a data scientist
+does in a Notebook. They go ahead and they
+explore the data, they create a training data set, and then they move on to go ahead and writing
+the code in Keras. So I won't walk
+through all of this, but the Keras code is also in the repository if
+you're interested. So there is a text
+classification model, in the trainer there
+is a model.py and Keras is a way of writing
+machine learning models. In this case, the key model here includes what is called an embedding to take words and convert
+them into numbers, has some convolutional layer to do a rolling average of the words, pulling them up,
+creating a dropout, creating a dense layer which
+is almost a final layer, and then using that with
+an activation of a Softmax, which is what you tend to
+do for classification, and then you go
+ahead and you submit that job to ML Engine
+for training. So now we don't have
+to do the training on this small machine that we are doing the development
+on, although we could, now we could just run
+the Keras model locally or we can submit
+the Keras model to the Cloud, have it do the training, and then we can come back, we can monitor it, and then we can look at
+what the predictions are. We can try out
+different articles, what the prediction is, and you can deploy
+the model and so on. So essentially, the third way of doing machine learning
+on Google Cloud is to write the model yourself with Keras and then you
+have your own model. It can be a very sophisticated
+custom model with all of the things that you know about the data
+and your problem. So to summarize, three
+different ways of doing machine learning on
+GCP, number one, use BigQuery ML that allows
+you to do models in SQL, very fast iterative approach, we trained a model
+in three minutes, we got pretty good performance. So it allows you to iterate and experiment and build
+models extremely quickly. The second option, if
+you have a few hours, take your data set, load it into AutoML, let AutoML have at it. You will get an
+extremely accurate model that takes advantage of all of the machine learning models
+that Google has built before, it takes advantage of all
+of those architectures, it does a search among them, it does feature engineering, you get a really, really high-quality model
+for very little work, for essentially a day of compute. So once you have that model, you can use that, and you can deploy it, and that can be the thing that
+you go to production with. The third option that you have, is that you can say
+now I want to write my own model in Keras,
+and you can, right? You basically start a Notebook and now if you have good GPUs, you basically create
+your Notebook, you write your Python code, and you train on the Notebook, and then once you have a model that trains relatively well, you do the training at scale, on the AI platform, Then once that's done,
+you can deploy on the AI platform and you can
+predict with it as well. So there you have it. Three different ways
+to do machine learning on Google Cloud.

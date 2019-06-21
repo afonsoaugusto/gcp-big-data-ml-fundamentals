@@ -1,0 +1,100 @@
+We'll continue our tour
+of pre-built models with high performing custom ML models with one surprising twist. You can build them with no code. Welcome to AutoML. Let's say I'm a
+meteorologist and I want to predict weather trends and
+flight plans from images. There are more than 10
+different types of clouds, and each type could represent
+different patterns of weather that I may want to know ahead of time
+before it strikes. If I'm a pilot, or farmer, or a travel agency, or even just someone
+who wants to know if it's going to rain today or not. If we want to predict on weather, this means we need to identify not just that there's a cloud, but also what type of cloud. For example, a cirrus cloud is usually associated
+with fair weather, whereas cumulonimbus cloud
+usually foreshadows rain. So let's revisit our Vision API and see how well it does
+on this new problem. Here we show the image
+to the Vision API. After I uploaded the image
+to the Vision API, here are the results for
+the labels it inferred. The pre-trained model
+likely was never taught to recognize cloud types
+to this granularity. We need something
+a little more custom that we can train ourselves. If you need to extend
+the capabilities of the AI building blocks,
+consider AutoML. Here we will use
+our own labeled dataset of cloud images and train a custom model using
+AutoML Vision. Let's take a look at
+the AutoML Vision in action. In this dataset, you've got five image classes corresponding to five different
+types of clouds. Click on the different labels
+to filter by cloud type. The numbers tell
+us how many images are associated with
+each particular label. Once you've uploaded and
+labeled your images, you're ready to train your model. You can specify your model
+name and your training budget. You actually get one compute
+hour for free for training. But for datasets with
+more than 1000 images, you can train for longer. So let's imagine that we received an email
+notification indicating that our model has been
+trained and now we want to evaluate it and
+look at its performance. Simply click on "Evaluate"
+up at the top and it's going to give you a lot
+of data about your model. You'll notice a few key metrics
+that are included here. Area under the
+precision-recall curve, and you can think of
+precision as a measure of the quality and recall as
+a measure of the quantity. So precision is the number of photos correctly classified as a particular label divided by the total number of photos
+classified with that label. So for all photos that our
+model classified as cumulus what percentage
+were correctly classified? Recall is number of
+photos classified as a particular label divided by the total number of
+photos with that label. So what percentage of my cumulus labeled photos were correctly classified as
+cumulus by my model? So you want to think
+about for your use case, if you care more about
+classifying photos correctly precision or getting a high number of
+correctly classified photos. Recall. You probably
+cared about both, but the metric is typically
+plotted as a trade-off. Ideally, you'll want to model
+in the top right corner. Now another great feature on the evaluation page of AutoML Vision is
+this confusion matrix. So you can see here the photos
+and which ones were labeled with a predicted label that was either true or false. What you want ideally is a diagonal line like we see here. But it looks like our
+cirrus predictions aren't performing as well
+as the other labels. So you can actually click on the items in the confusion matrix to see the photos that
+were misclassified. So here if I click on this box, it shows me that
+23 percent of the photos for cirrus were actually
+classified as altostratus. So I'll click on that here and it's actually
+going to bring up the specific images that were classified correctly as cirrus, as well as the ones that are classified incorrectly
+as altocumulus. Lastly, let's show a prediction using this particular ML model. So you can navigate
+to the "Predict" tab and upload an image. So I'm going to find an image on my computer
+of a cloud that I want to have the computer identify and predict
+its cloud type. So you can see I've uploaded my photo here and
+it's predicting it's a cumulus cloud which is
+correct, and there you have it. That's the AutoML Vision
+product in action. The big takeaway here
+is not what we did, but what we didn't do. As we talked about
+at the beginning, typically when building
+a custom model, you have several steps which are complex and time-intensive. With AutoML, we don't
+have to do any of that. However, as great as AutoML is, it can't solve every ML problem, which is why you
+learned how to build a CNN by hand earlier
+in the course. Behind the scenes, AutoML is powered by the
+latest ML research. While your model trains, the AutoML platform
+actually trains and evaluates multiple models and compares them against each other. This Naznet approach or
+neural architecture search produces an ensemble of ML models and chooses
+the best one. Like go and self-driving cars, deep learning is now doing. Deep learning as you saw with the neural
+architecture search. But how well does a code list
+model you build with AutoML compare with some
+of the other image classification models
+you may have heard of? This graph is a refresh of the best models for
+ImageNet published in 2017. The x-axis is model size. The y-axis is accuracy. The best possible model position
+would be the green dot. What you want is
+a small model left on the x with great accuracy,
+top of the y. Our world has been
+trending towards big heavy models that aren't
+exactly like a brain. That's the black line.
+AutoML powered by Naznet is shown
+in the red line. The AutoML networks are
+smaller and more efficient. I'll provide a link to
+the Google AI blog so you can track
+the latest developments. Here's a final recap
+on when you should use the Vision API versus
+AutoML Vision. Recall that with AutoML Vision, you are primarily doing
+classification on image data that you are
+providing to the service. We did this in our demo where we needed the model
+to learn a label, the type of cloud that
+the Vision API didn't know. AutoML requires
+no coding experience, while the Vision API
+requires you to be familiar with invoking APIs with a programming language
+of your choice.
